@@ -2,9 +2,17 @@
     session_start();
     include("../method/funzioni.php");
 
-    $sql = "SELECT * FROM utente WHERE ID = {$_SESSION['ID_CLIENTE']}";
+    $sql = "SELECT * FROM utente u, indirizzo i WHERE u.ID = {$_SESSION['ID_CLIENTE']} AND i.fk_id_utente = u.ID";
     $risultato = connessione($sql, "gomarket");
     $ris = $risultato[0];
+
+    if($ris["ruolo"] == 0) {
+        $sel_zero = "selected";
+        $sel_uno = "";
+    }else {
+        $sel_uno = "selected";
+        $sel_zero = "";
+    }
 
     $nav = "
         <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
@@ -37,43 +45,65 @@
                     <img src='../assets/03.svg' class='img-fluid mx-auto d-block'>
                 </div>
                 <div class='col-6'>
-                    <div class='row container'>
-                        <div class='col-1'></div>
-                        <div class='col-11'>
-                            <div class='form-floating mb-3'>
-                                <input type='text' class='form-control' value='{$ris["nome"]}'>
-                                <label for='floatingInput'>Nome:</label>
-                            </div>
-                            <div class='form-floating mb-3'>
-                                <input type='text' class='form-control' value='{$ris["cognome"]}'>
-                                <label for='floatingInput'>Cognome:</label>
-                            </div>
-                            <div class='form-floating mb-3'>
-                                <input type='email' class='form-control' value='{$ris["indirizzo_email"]}'>
-                                <label for='floatingInput'>Indirizzo Email:</label>
-                            </div>
-                            <div class='form-floating mb-3'>
-                                <input type='text' class='form-control' value='{$ris["nome"]}'>
-                                <label for='floatingInput'>Nome:</label>
-                            </div>
-                            <div class='form-floating mb-3'>
-                                <input type='password' class='form-control' value='{$ris["pwd"]}'>
-                                <label for='floatingInput'>Password:</label>
-                            </div>
-                            <div class='form-floating mb-3'>
-                                <input type='text' class='form-control' value='{$ris["nome_utente"]}'>
-                                <label for='floatingInput'>Username:</label>
-                            </div>
-                            <div class='form-floating mb-3'>
-                                <input type='text' class='form-control' value='{$ris["codice_fiscale"]}'>
-                                <label for='floatingInput'>Codice Fiscale:</label>
-                            </div>
-                            <div class='form-floating mb-3'>
-                                <input type='date' class='form-control' value='{$ris["data_di_nascita"]}'>
-                                <label for='floatingInput'>Data Di Nascita:</label>
+                    <form name='update_form' action='../method/update_profile.php' method='post'>
+                        <div class='row container'>
+                            <div class='col-1'></div>
+                            <div class='col-11'>
+                                <div class='form-floating mb-3'>
+                                    <input type='text' class='form-control' name='nome_utente' value='{$ris["nome"]}'>
+                                    <label for='floatingInput'>Nome:</label>
+                                </div>
+                                <div class='form-floating mb-3'>
+                                    <input type='text' class='form-control' name='cognome_utente' value='{$ris["cognome"]}'>
+                                    <label for='floatingInput'>Cognome:</label>
+                                </div>
+                                <div class='form-floating mb-3'>
+                                    <input type='email' class='form-control' name='email_utente' value='{$ris["indirizzo_email"]}'>
+                                    <label for='floatingInput'>Indirizzo Email:</label>
+                                </div>
+                                <div class='form-floating mb-3'>
+                                    <input type='password' class='form-control' name='password_utente' value='{$ris["pwd"]}' disabled>
+                                    <label for='floatingInput'>Password:</label>
+                                </div>
+                                <div class='form-floating mb-3'>
+                                    <input type='text' class='form-control' name='username' value='{$ris["nome_utente"]}'>
+                                    <label for='floatingInput'>Username:</label>
+                                </div>
+                                <div class='form-floating mb-3'>
+                                    <input type='text' class='form-control' name='cod_fiscale' value='{$ris["codice_fiscale"]}'>
+                                    <label for='floatingInput'>Codice Fiscale:</label>
+                                </div>
+                                <div class='form-floating mb-3'>
+                                    <input type='date' class='form-control' name='data_di_nascita' value='{$ris["data_di_nascita"]}'>
+                                    <label for='floatingInput'>Data Di Nascita:</label>
+                                </div>
+                                <div class='form-floating mb-3'>
+                                    <select class='form-select' aria-label='Floating label select example' name='ruolo'>
+                                    <option value='0' {$sel_zero}>CLIENTE</option>
+                                    <option value='1' {$sel_uno}>FATTORINO</option>
+                                    </select>
+                                    <label for='floatingSelect'>Ruolo:</label>
+                                </div>
+                                <div class='form-floating mb-3'>
+                                    <input type='text' class='form-control' name='regione_utente' value='{$ris["regione"]}'>
+                                    <label for='floatingInput'>Regione:</label>
+                                </div>
+                                <div class='form-floating mb-3'>
+                                    <input type='text' class='form-control' name='cap_utente' value='{$ris["CAP"]}'>
+                                    <label for='floatingInput'>CAP:</label>
+                                </div>
+                                <div class='form-floating mb-3'>
+                                    <input type='text' class='form-control' name='via_utente' value='{$ris["via"]}'>
+                                    <label for='floatingInput'>Via:</label>
+                                </div>
+                                <div class='form-floating mb-3'>
+                                    <input type='text' class='form-control' name='numero_civico_utente' value='{$ris["num_civico"]}'>
+                                    <label for='floatingInput'>Numero Civico:</label>
+                                </div>
+                                <button type='submit' class='btn btn-primary'>Aggiorna Profilo</button>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
