@@ -25,7 +25,9 @@
                 </div>
                 </div>
             </nav>
-        ";  
+        ";
+        
+        $welcome_banner = "<p class='subtitle fs-2 text-center'>Benvenuto {$_SESSION["NOME"]} sei pronto ad ordinare la tua prossima spesa?!<br></p>";
     }else {
         $nav = "
             <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
@@ -47,6 +49,8 @@
                 </div>
             </nav>
         ";
+
+        $welcome_banner = "<p class='subtitle fs-2 text-center'>La spesa direttamente a casa tua<br></p>";
     }
 
     $img = "<img src='./assets/01.svg' class='img-fluid mx-auto d-block'>";
@@ -65,7 +69,7 @@
                     {$nav}
                     <div class='row first-item'>
                     <div class='col-lg-6'>
-                        <p class='subtitle fs-2 text-center'>La spesa direttamente a casa tua<br></p>
+                        {$welcome_banner}
                     </div>
                     <div class='col-lg-6'>{$img}</div>
                     </div>

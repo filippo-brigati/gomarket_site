@@ -27,13 +27,10 @@
 		$conn->query($sql) or die($conn->error);
 	}
 
-    function stringarandom() {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $randstring = '';
-        for ($i = 0; $i < 6; $i++) {
-			$flag = $characters[rand(0, strlen($characters))];
-            $randstring .= $flag;
-        }
-        return $randstring;
+	function controllo($risultato, $arr) {
+		foreach($risultato as $riga) {
+			if($riga["indirizzo_email"] == $arr[2]) { return 1; }
+			else { return 0; }
+		}
 	}
 ?>

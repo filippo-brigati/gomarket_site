@@ -25,50 +25,61 @@
 
     $body = "
         <div class='container'>
-        <div class='container'>
-            <form class='row g-3'>
+        <div class='container first-item'>
+            <form class='row g-3'  name='registration' action='../method/registration_check.php' method='post'>
                 <div class='col-md-6'>
                 <label for='inputEmail4' class='form-label'>Nome</label>
-                    <input type='text' class='form-control' id='nome_utente' placeholder='Mario'>
+                    <input type='text' class='form-control' name='nome_utente' placeholder='Mario' required>
                 </div>
                 <div class='col-md-6'>
                 <label for='inputEmail4' class='form-label'>Cognome</label>
-                    <input type='email' class='form-control' id='cognome_utente' placeholder='Rossi'>
+                    <input type='text' class='form-control' name='cognome_utente' placeholder='Rossi' required>
                 </div>
                 <div class='col-md-6'>
                 <label for='inputEmail4' class='form-label'>Email</label>
-                    <input type='email' class='form-control' id='email_utente' placeholder='esempio@email.it'>
+                    <input type='email' class='form-control' name='email_utente' placeholder='esempio@email.it' required>
                 </div>
                 <div class='col-md-6'>
                     <label for='inputPassword4' class='form-label'>Password</label>
-                    <input type='password' class='form-control' id='password_utente' placeholder='**********'>
+                    <input type='password' class='form-control' name='password_utente' placeholder='**********' required>
                 </div>
                 <div class='col-6'>
                     <label for='inputAddress2' class='form-label'>Nome Utente (username)</label>
-                    <input type='text' class='form-control' id='inputAddress2' placeholder='Mario_Rossi'>
+                    <input type='text' class='form-control' name='username' placeholder='Mario_Rossi' required>
                 </div>
                 <div class='col-6'>
                     <label for='inputAddress2' class='form-label'>CODICE FISCALE</label>
-                    <input type='text' class='form-control' id='inputAddress2' placeholder='GRDK94VDJSJVN349P'>
+                    <input type='text' class='form-control' name='cod_fiscale' placeholder='GRDK94VDJSJVN349P' required>
+                </div>
+                <div class='col-6'>
+                    <label for='example-date-input' class='form-label'>Data Di Nascita</label>
+                    <input class='form-control' type='date' value='2011-08-19' name='data_di_nascita' required>                   
+                </div>
+                <div class='col-6'>
+                    <label for='inputAddress2' class='form-label'>RUOLO</label><br>
+                    <select class='form-select' aria-label='Default select example' name='ruolo' required>
+                        <option value='0'>CLIENTE</option>
+                        <option value='1'>FATTORINO</option>
+                    </select>                    
                 </div>
                 <div class='col-md-4'>
                     <label for='inputCity' class='form-label'>Regione</label>
-                    <input type='text' class='form-control' id='regione_utente' placeholder='Emilia-Romagna'>
+                    <input type='text' class='form-control' name='regione_utente' placeholder='Emilia-Romagna' required>
                 </div>
                 <div class='col-md-4'>
                     <label for='inputState' class='form-label'>Via</label>
-                    <input type='text' class='form-control' id='via_utente' placeholder='Via Roma'>
+                    <input type='text' class='form-control' name='via_utente' placeholder='Via Roma' required>
                 </div>
                 <div class='col-md-2'>
                     <label for='inputZip' class='form-label'>CAP</label>
-                    <input type='text' class='form-control' id='cap_utente' placeholder='42123'>
+                    <input type='text' class='form-control' name='cap_utente' placeholder='42123' required>
                 </div>                
                 <div class='col-md-2'>
                     <label for='inputZip' class='form-label'>Numero Civico</label>
-                    <input type='text' class='form-control' id='numero_civico_utente' placeholder='17'>
+                    <input type='text' class='form-control' name='numero_civico_utente' placeholder='17' required>
                 </div>
                 <div class='col-12'>
-                    <button type='submit' class='btn btn-primary'>Sign in</button>
+                    <button type='submit' class='btn btn-primary'>Registrati</button>
                 </div>
             </form>
         </div>

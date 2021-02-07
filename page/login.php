@@ -12,7 +12,7 @@
             <div class='collapse navbar-collapse justify-content-end' id='navbarNav'>
                 <ul class='navbar-nav'>
                 <li class='nav-item'>
-                    <a class='nav-link' href='./registrati.php'>REGISTRATI</a>
+                    <a class='nav-link' href='./registrazione.php'>REGISTRATI</a>
                 </li>
                 <li class='nav-item'>
                     <a class='nav-link active' href='./login.php'>ACCEDI</a>
@@ -24,7 +24,7 @@
     ";
 
     $body = "
-        <div class='row'>
+        <div class='row first-item'>
             <div class='col-lg-6'>
                 <img src='../assets/02.svg'class='img-fluid mx-auto d-block'>
             </div>
@@ -36,7 +36,7 @@
                     </div>
                     <div class='mb-3'>
                         <label for='formGroupExampleInput2' class='form-label'>Inserisci Password</label>
-                        <input type='text' class='form-control' name='pwd' placeholder='password'>
+                        <input type='password' class='form-control' name='pwd' placeholder='password'>
                     </div>
                     <button type='submit' class='btn btn-light'>ACCEDI</button>
                 </form>
