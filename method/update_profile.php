@@ -34,5 +34,7 @@
     inserisci($first_sql, "gomarket");
     inserisci($second_sql, "gomarket");
 
+    $_SESSION["NOME"] = $arr[0];
+
     header("Location: ../page/profilo.php");
 ?>
