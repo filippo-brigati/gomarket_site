@@ -3,31 +3,72 @@
     session_start();
 
     if(isset($_SESSION["NOME"])) {
-        $nav = "
-            <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
-                <div class='container-fluid'>
-                <a class='navbar-brand' href='./index.php'>GOMARKET</a>
-                <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
-                    <span class='navbar-toggler-icon'></span>
-                </button>
-                <div class='collapse navbar-collapse justify-content-end' id='navbarNav'>
-                    <ul class='navbar-nav'>
-                    <li class='nav-item'>
-                        <a class='nav-link' href='./page/ordini.php'>ORDINI</a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' href='./page/profilo.php'>PROFILO</a>
-                    </li>
-                    <li class='nav-item'>
-                        <a class='nav-link' href='./method/logout.php'>LOGOUT</a>
-                    </li>                 
-                    </ul>
-                </div>
-                </div>
-            </nav>
-        ";
-        
-        $welcome_banner = "<p class='subtitle fs-2 text-center'>Benvenuto {$_SESSION["NOME"]} sei pronto ad ordinare la tua prossima spesa?!<br></p>";
+        if($_SESSION["RUOLO"] == 0) {
+            $nav = "
+                <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
+                    <div class='container-fluid'>
+                    <a class='navbar-brand' href='./index.php'>GOMARKET</a>
+                    <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
+                        <span class='navbar-toggler-icon'></span>
+                    </button>
+                    <div class='collapse navbar-collapse justify-content-end' id='navbarNav'>
+                        <ul class='navbar-nav'>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='./page/cliente/nordine.php'>ORDINE</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='./page/cliente/registro.php'>REGISTRO</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='./page/profilo.php'>PROFILO</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='./method/logout.php'>LOGOUT</a>
+                        </li>                 
+                        </ul>
+                    </div>
+                    </div>
+                </nav>
+            ";
+            
+            $welcome_banner = "<p class='subtitle fs-2 text-center'>Benvenuto {$_SESSION["NOME"]} sei pronto ad ordinare la tua prossima spesa?!<br></p>";
+            $img = "<img src='./assets/01.svg' class='img-fluid mx-auto d-block'>";
+        }else {
+            $nav = "
+                <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
+                    <div class='container-fluid'>
+                    <a class='navbar-brand' href='./index.php'>GOMARKET</a>
+                    <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
+                        <span class='navbar-toggler-icon'></span>
+                    </button>
+                    <div class='collapse navbar-collapse justify-content-end' id='navbarNav'>
+                        <ul class='navbar-nav'>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='./page/fattorino/portafoglio.php'>PORTAFOGLIO</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='./page/fattorino/nconsegna.php'>NUOVA_CONSEGNA</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='./page/fattorino/registroconsegne.php'>REGISTRO_CONSEGNE</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='./page/profilo.php'>PROFILO</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='./method/logout.php'>LOGOUT</a>
+                        </li>                 
+                        </ul>
+                    </div>
+                    </div>
+                </nav>
+            ";
+            
+            $welcome_banner = "<p class='subtitle fs-2 text-center'>Benvenuto {$_SESSION["NOME"]} sei pronto a consegnare la tua prossima spesa?!<br></p>";
+            $img = "<img src='./assets/05.svg' class='img-fluid mx-auto d-block'>";
+        }
+
+
     }else {
         $nav = "
             <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
@@ -51,9 +92,8 @@
         ";
 
         $welcome_banner = "<p class='subtitle fs-2 text-center'>La spesa direttamente a casa tua<br></p>";
+        $img = "<img src='./assets/01.svg' class='img-fluid mx-auto d-block'>";
     }
-
-    $img = "<img src='./assets/01.svg' class='img-fluid mx-auto d-block'>";
 
     $html = "
         <html>

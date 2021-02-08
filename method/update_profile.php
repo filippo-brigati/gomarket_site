@@ -25,7 +25,7 @@
                 u.ruolo = $arr[11]
             WHERE u.ID = {$_SESSION["ID_CLIENTE"]}";
     $second_sql = "UPDATE indirizzo i
-                   SET i.regione = '$arr[6]',
+                   SET i.citta = '$arr[6]',
                        i.CAP = $arr[8],
                        i.via = '$arr[7]',
                        i.num_civico = '$arr[9]'

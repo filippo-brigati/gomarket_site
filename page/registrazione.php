@@ -63,8 +63,8 @@
                     </select>                    
                 </div>
                 <div class='col-md-4'>
-                    <label for='inputCity' class='form-label'>Regione</label>
-                    <input type='text' class='form-control' name='regione_utente' placeholder='Emilia-Romagna' required>
+                    <label for='inputCity' class='form-label'>Citta</label>
+                    <input type='text' class='form-control' name='regione_utente' placeholder='Reggio-Emilia' required>
                 </div>
                 <div class='col-md-4'>
                     <label for='inputState' class='form-label'>Via</label>

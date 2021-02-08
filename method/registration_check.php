@@ -26,7 +26,7 @@
 
         $second_sql = "INSERT INTO utente (ID, nome, cognome, indirizzo_email, pwd, nome_utente, codice_fiscale, data_di_nascita, ruolo) 
                        VALUES ($next_id, '$arr[0]', '$arr[1]', '$arr[2]', '$arr[3]', '$arr[4]', '$arr[5]', '$arr[10]', $arr[11])";
-        $third_sql = "INSERT INTO indirizzo (regione, CAP, via, num_civico, fk_id_utente) 
+        $third_sql = "INSERT INTO indirizzo (citta, CAP, via, num_civico, fk_id_utente) 
                       VALUES ('$arr[6]', '$arr[8]', '$arr[7]', '$arr[9]', $next_id)";
         inserisci($second_sql, "gomarket");
         inserisci($third_sql, "gomarket");

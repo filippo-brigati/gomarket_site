@@ -33,4 +33,15 @@
 			else { return 0; }
 		}
 	}
+
+	function generazioneCodice ($length) {
+		$salt = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345678';
+		$len = strlen($salt);
+		$makepass = '';
+
+		mt_srand(10000000*(double)microtime());
+
+		for ($i = 0; $i < $length; $i++) { $makepass .= $salt[mt_rand(0,$len - 1)]; }
+		return $makepass;
+	}
 ?>

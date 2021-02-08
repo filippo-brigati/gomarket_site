@@ -10,8 +10,8 @@
     $risultato = connessione($sql, "gomarket");
 
     if(count($risultato) == 0 ) {
-        $html = "<p class='h4'>Utente non riconosciuto</p>";
-        print_r($html);
+        $_SESSION["ERRORE_LOGIN"] = 1;
+        header("Location: ../page/login.php");
     }else{
         $riga=$risultato[0];
         $_SESSION["ID_CLIENTE"] = $riga["ID"];

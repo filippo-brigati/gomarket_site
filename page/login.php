@@ -2,6 +2,12 @@
     session_start();
     include("../method/funzioni.php");
 
+    if(isset($_SESSION["ERRORE_LOGIN"])) {
+        $err = "border border-danger";
+    }else {
+        $err = "";
+    }
+
     $nav = "
         <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
             <div class='container-fluid'>
@@ -32,11 +38,11 @@
                 <form name='login' action='../method/check.php' method='post'>
                     <div class='mb-3'>
                         <label for='formGroupExampleInput' class='form-label'>Inserisci Indirizzo Mail</label>
-                        <input type='text' class='form-control' name='usr' placeholder='esempio@email.it'>
+                        <input type='text' class='form-control {$err}' name='usr' placeholder='esempio@email.it'>
                     </div>
                     <div class='mb-3'>
                         <label for='formGroupExampleInput2' class='form-label'>Inserisci Password</label>
-                        <input type='password' class='form-control' name='pwd' placeholder='password'>
+                        <input type='password' class='form-control {$err}' name='pwd' placeholder='password'>
                     </div>
                     <button type='submit' class='btn btn-light'>ACCEDI</button>
                 </form>
