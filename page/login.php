@@ -3,7 +3,7 @@
     include("../method/funzioni.php");
 
     if(isset($_SESSION["ERRORE_LOGIN"])) {
-        $err = "border border-danger";
+        $err = "<div class='alert alert-danger' role='alert'>ERRORE! Indirizzo email o password errate...riprova</div>";
     }else {
         $err = "";
     }
@@ -31,18 +31,19 @@
 
     $body = "
         <div class='row first-item'>
-            <div class='col-lg-6'>
+            <div class='col-lg-6 align-self-center'>
                 <img src='../assets/02.svg'class='img-fluid mx-auto d-block'>
             </div>
-            <div class='col-lg-6 subtitle'>
+            <div class='col-lg-6 align-self-center'>
+                {$err}
                 <form name='login' action='../method/check.php' method='post'>
                     <div class='mb-3'>
                         <label for='formGroupExampleInput' class='form-label'>Inserisci Indirizzo Mail</label>
-                        <input type='text' class='form-control {$err}' name='usr' placeholder='esempio@email.it'>
+                        <input type='text' class='form-control' name='usr' placeholder='esempio@email.it'>
                     </div>
                     <div class='mb-3'>
                         <label for='formGroupExampleInput2' class='form-label'>Inserisci Password</label>
-                        <input type='password' class='form-control {$err}' name='pwd' placeholder='password'>
+                        <input type='password' class='form-control' name='pwd' placeholder='password'>
                     </div>
                     <button type='submit' class='btn btn-light'>ACCEDI</button>
                 </form>

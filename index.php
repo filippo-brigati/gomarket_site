@@ -108,7 +108,7 @@
                 <div class='container-lg'>
                     {$nav}
                     <div class='row first-item'>
-                    <div class='col-lg-6'>
+                    <div class='col-lg-6 align-self-center'>
                         {$welcome_banner}
                     </div>
                     <div class='col-lg-6'>{$img}</div>

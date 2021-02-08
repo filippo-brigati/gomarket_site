@@ -1,5 +1,4 @@
 <?php
-    /*print_r($_GET["id"]);*/
     session_start();
     include("../../method/funzioni.php");
 
@@ -36,35 +35,6 @@
             </div>
         ";
     }else {
-        $sql = "SELECT * FROM prodotto p, supermercato s WHERE p.fk_id_ordine = {$_GET["id"]} AND p.fk_id_supermercato = s.ID";
-        $risultato = connessione($sql, "gomarket");
-
-        $flag = "
-            <table class='table table-bordered'>
-                <thead class='align-middle text-center'>
-                    <tr>
-                    <th scope='col'>NOME</th>
-                    <th scope='col'>MARCA</th>
-                    <th scope='col'>COSTO UNITARIO</th>
-                    <th scope='col'>SUPERMERCATO</th>
-                    </tr>
-                </thead>
-                <tbody class='align-middle text-center'>
-        ";
-
-        foreach($risultato as $riga) {     
-            $flag .= "
-                <tr>
-                    <th>{$riga["nome_prodotto"]}</th>
-                    <td>{$riga["marca_prodotto"]}</td>
-                    <td>{$riga["costo_unitario_prodotto"]}</td>
-                    <td>{$riga["nome_super"]}</td>
-                </tr>
-            ";
-        }
-
-        $flag .= "</tbody></table>";
-
         $nav = "
             <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
                 <div class='container-fluid'>
@@ -74,8 +44,8 @@
                 </button>
                 <div class='collapse navbar-collapse justify-content-end' id='navbarNav'>
                     <ul class='navbar-nav'>
-                        <li class='nav-item'>
-                        <a class='nav-link' href='./nordine.php'>ORDINE</a>
+                    <li class='nav-item'>
+                        <a class='nav-link active' href='./nordine.php'>ORDINE</a>
                     </li>
                     <li class='nav-item'>
                         <a class='nav-link' href='./registro.php'>REGISTRO</a>
@@ -93,9 +63,24 @@
         ";
 
         $body = "
-            <div class='container first-item'>
-                {$flag}
-            </div>
+            <div class='container'>
+                <div class='container row first-item'>
+                    <div class='col-6 align-self-center'>
+                    <img src='../../assets/06.svg' class='img-fluid mx-auto d-block'>
+                    </div>
+                    <div class='col-1 align-self-center'></div>
+                    <div class='col-5 align-self-center'>
+                        <div class='mb-3'>
+                            <label for='formFile' class='form-label'>Seleziona File:</label>
+                            <input class='form-control' type='file' id='formFile'>
+                        </div>
+                        <div class='alert alert-warning' role='alert'>
+                            ATTENZIONE! Il file deve evere come estensione .xls / .xlsx,
+                            per non sbagliare scarica il template da <a href='#'>qui</a>
+                        </div>
+                    </div>
+                </div>
+            </div>       
         ";
     }
 
