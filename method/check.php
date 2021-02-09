@@ -11,6 +11,7 @@
 
     if(count($risultato) == 0 ) {
         $_SESSION["ERRORE_LOGIN"] = 1;
+        
         header("Location: ../page/login.php");
     }else{
         $riga=$risultato[0];

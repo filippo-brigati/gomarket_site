@@ -146,7 +146,7 @@
                                         <label for='floatingInput'>Data Di Nascita:</label>
                                     </div>
                                     <div class='form-floating mb-3'>
-                                        <select class='form-select' aria-label='Floating label select example' name='ruolo'>
+                                        <select class='form-select' aria-label='Floating label select example' name='ruolo' disabled>
                                         <option value='0' {$sel_zero}>CLIENTE</option>
                                         <option value='1' {$sel_uno}>FATTORINO</option>
                                         </select>

@@ -70,14 +70,17 @@
                     </div>
                     <div class='col-1 align-self-center'></div>
                     <div class='col-5 align-self-center'>
-                        <div class='mb-3'>
-                            <label for='formFile' class='form-label'>Seleziona File:</label>
-                            <input class='form-control' type='file' id='formFile'>
-                        </div>
-                        <div class='alert alert-warning' role='alert'>
-                            ATTENZIONE! Il file deve evere come estensione .xls / .xlsx,
-                            per non sbagliare scarica il template da <a href='#'>qui</a>
-                        </div>
+                        <form name='file_upload' action='' method='post'>
+                            <div class='mb-3'>
+                                <label for='formFile' class='form-label'>Seleziona File:</label>
+                                <input class='form-control' type='file' id='formFile'>
+                            </div>
+                            <div class='alert alert-warning' role='alert'>
+                                ATTENZIONE! Il file deve evere come estensione .xls / .xlsx,
+                                per non sbagliare scarica il template da <a href='#'>qui</a>
+                            </div>
+                            <button type='submit' class='btn btn-light'>AVANTI</button>
+                        </form>
                     </div>
                 </div>
             </div>       

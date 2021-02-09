@@ -44,13 +44,13 @@
                     <div class='collapse navbar-collapse justify-content-end' id='navbarNav'>
                         <ul class='navbar-nav'>
                         <li class='nav-item'>
-                            <a class='nav-link' href='./page/fattorino/portafoglio.php'>PORTAFOGLIO</a>
+                            <a class='nav-link' href='./page/fattorino/portafoglio.php'>SALDO</a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='./page/fattorino/nconsegna.php'>NUOVA_CONSEGNA</a>
+                            <a class='nav-link' href='./page/fattorino/nconsegna.php'>CONSEGNA</a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href='./page/fattorino/registroconsegne.php'>REGISTRO_CONSEGNE</a>
+                            <a class='nav-link' href='./page/fattorino/registroconsegne.php'>REGISTRO</a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link' href='./page/profilo.php'>PROFILO</a>
