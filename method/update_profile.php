@@ -13,7 +13,6 @@
     $arr[9] = $_POST["numero_civico_utente"];
 
     $arr[10] = $_POST["data_di_nascita"];
-    $arr[11] = $_POST["ruolo"];
 
     $first_sql = "UPDATE utente u 
             SET u.nome = '$arr[0]', 
@@ -21,8 +20,7 @@
                 u.indirizzo_email = '$arr[2]', 
                 u.nome_utente = '$arr[4]', 
                 u.codice_fiscale = '$arr[5]', 
-                u.data_di_nascita = '$arr[10]', 
-                u.ruolo = $arr[11]
+                u.data_di_nascita = '$arr[10]'
             WHERE u.ID = {$_SESSION["ID_CLIENTE"]}";
     $second_sql = "UPDATE indirizzo i
                    SET i.citta = '$arr[6]',

@@ -33,6 +33,15 @@
             
             $welcome_banner = "<p class='subtitle fs-2 text-center'>Benvenuto {$_SESSION["NOME"]} sei pronto ad ordinare la tua prossima spesa?!<br></p>";
             $img = "<img src='./assets/01.svg' class='img-fluid mx-auto d-block'>";
+
+            $body = "
+                <div class='row first-item'>
+                <div class='col-lg-6 align-self-center'>
+                    {$welcome_banner}
+                </div>
+                    <div class='col-lg-6'>{$img}</div>
+                </div>            
+            ";
         }else {
             $nav = "
                 <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
@@ -66,8 +75,16 @@
             
             $welcome_banner = "<p class='subtitle fs-2 text-center'>Benvenuto {$_SESSION["NOME"]} sei pronto a consegnare la tua prossima spesa?!<br></p>";
             $img = "<img src='./assets/05.svg' class='img-fluid mx-auto d-block'>";
-        }
 
+            $body = "
+                <div class='row first-item'>
+                <div class='col-lg-6 align-self-center'>
+                    {$welcome_banner}
+                </div>
+                    <div class='col-lg-6'>{$img}</div>
+                </div>            
+            ";
+        }
 
     }else {
         $nav = "
@@ -93,6 +110,19 @@
 
         $welcome_banner = "<p class='subtitle fs-2 text-center'>La spesa direttamente a casa tua<br></p>";
         $img = "<img src='./assets/01.svg' class='img-fluid mx-auto d-block'>";
+
+        $body = "
+            <div class='row first-item'>
+                <div class='col-lg-12 align-self-center'>
+                    {$welcome_banner}
+                </div>
+            </div>
+            <div class='row first-item align-self-center'>
+                <div class='col-4'><img src='./assets/01.svg' class='img-thumbnail' alt=''></div>
+                <div class='col-4'><img src='./assets/01.svg' class='img-thumbnail' alt='...'></div>
+                <div class='col-4'><img src='./assets/01.svg' class='img-thumbnail' alt='...'></div>
+            </div>
+        ";
     }
 
     $html = "
@@ -107,12 +137,7 @@
             <body>
                 <div class='container-lg'>
                     {$nav}
-                    <div class='row first-item'>
-                    <div class='col-lg-6 align-self-center'>
-                        {$welcome_banner}
-                    </div>
-                    <div class='col-lg-6'>{$img}</div>
-                    </div>
+                    {$body}
                 </div>
             </body>
         </html>    

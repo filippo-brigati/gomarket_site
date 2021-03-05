@@ -62,29 +62,7 @@
             </nav>
         ";
 
-        $body = "
-            <div class='container'>
-                <div class='container row first-item'>
-                    <div class='col-6 align-self-center'>
-                    <img src='../../assets/06.svg' class='img-fluid mx-auto d-block'>
-                    </div>
-                    <div class='col-1 align-self-center'></div>
-                    <div class='col-5 align-self-center'>
-                        <form action='../../method/check_file.php' method='post' enctype='multipart/form-data'>
-                            <div class='mb-3'>
-                                <label for='formFile' class='form-label'>Seleziona File:</label>
-                                <input class='form-control' name='file' type='file'>
-                            </div>
-                            <div class='alert alert-warning' role='alert'>
-                                ATTENZIONE! Il file deve evere come estensione .xls / .xlsx,
-                                per non sbagliare scarica il template da <a href='#'>qui</a>
-                            </div>
-                            <button type='submit' class='btn btn-light'>AVANTI</button>
-                        </form>
-                    </div>
-                </div>
-            </div>       
-        ";
+        $body = "";
     }
 
     $html = "
@@ -106,4 +84,5 @@
     ";
 
     print_r($html);
+    print_r($_SESSION["nordine"]);
 ?>
