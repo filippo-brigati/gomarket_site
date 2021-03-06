@@ -158,6 +158,9 @@
         ";
 
         $table .= "</tbody></table>";
+
+        //<img src='../../assets/08.svg' style='max-width: 400px'></img>
+
         $body = "
             <div class='container first-item'>
                 <div class='row'>
@@ -166,6 +169,12 @@
                     <div class='col-5'>
                         <p class='h3'>Riepilogo Ordine</p>
                         {$riep_table}
+                        <div class='d-flex'>
+                            <div class='d-flex justify-content-end'>
+                                <div class='mr-auto p-2'><a href='../../index.php' type='button' class='btn btn-outline-danger'>Annulla Ordine</a></div>
+                                <div class='p-2'><a href='./fordine.php?np={$num_prodotti}&nti={$num_tot_item}&ct={$costo_tot}' type='button' class='btn btn-outline-success'>Completa Ordine</a></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>";
