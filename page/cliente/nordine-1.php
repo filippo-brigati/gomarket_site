@@ -62,7 +62,113 @@
             </nav>
         ";
 
-        $body = "";
+        $rows = $_SESSION["nordine"];
+
+        $flag = array();
+        $prezzo = array();
+
+        $sql = "SELECT * FROM prodotto";
+        $risultato = connessione($sql, "gomarket");
+
+        //print_r($risultato);
+        //print_r($rows);
+
+        for($i=0;$i<count($rows);$i++) {
+            for($j=0;$j<count($risultato);$j++) {
+                if($rows[$i]["NOME PRODOTTO"] == $risultato[$j]["nome_prodotto"] and $rows[$i]["MARCA PRODOTTO"] == $risultato[$j]["marca_prodotto"]) {
+                    $flag[$i] = 2;
+                    $prezzo[$i] = ($rows[$i]["QUANTITA PRODOTTO"]*$risultato[$j]["costo_unitario_prodotto"]);
+                    break;
+                }else if($rows[$i]["NOME PRODOTTO"] == $risultato[$j]["nome_prodotto"] and $rows[$i]["MARCA PRODOTTO"] != $risultato[$j]["marca_prodotto"]) {
+                    $flag[$i] = 1;
+                    $prezzo[$i] = ($rows[$i]["QUANTITA PRODOTTO"]*$risultato[$j]["costo_unitario_prodotto"]);
+                    break;
+                }else if($rows[$i]["NOME PRODOTTO"] != $risultato[$j]["nome_prodotto"] and $rows[$i]["MARCA PRODOTTO"] != $risultato[$j]["marca_prodotto"]) {
+                    $flag[$i] = 0;
+                    $prezzo[$i] = 0;
+                    break;
+                }
+            }
+        }
+        //print_r($prezzo);
+        //print_r($flag);
+
+        $k = 0;
+        $num_tot_item = 0;
+        $table = "<table class='table table-striped text-center'>
+                    <thead>
+                    <tr>
+                        <th scope='col'>NOME</th>
+                        <th scope='col'>MARCA</th>
+                        <th scope='col'>QUANTITA'</th>
+                        <th scope='col'>COSTO TOT</th>
+                    </tr>
+                    </thead>
+                    <tbody>";
+
+        foreach($rows as $r) {
+            if($flag[$k] == 2) {
+                $table .= "<tr>
+                    <th>{$r['NOME PRODOTTO']}</th>
+                    <td>{$r['MARCA PRODOTTO']}</td>
+                    <td>{$r['QUANTITA PRODOTTO']}</td>
+                    <td>{$prezzo[$k]}</td>
+                </tr>";
+                $num_tot_item += $r['QUANTITA PRODOTTO'];
+            }else if($flag[$k] == 1) {
+                $table .= "<tr>
+                    <th>{$r['NOME PRODOTTO']}</th>
+                    <td>{$r['MARCA PRODOTTO']}</td>
+                    <td>{$r['QUANTITA PRODOTTO']}</td>
+                    <td>{$prezzo[$k]}</td>
+                </tr>";
+                $num_tot_item += $r['QUANTITA PRODOTTO'];
+            }else if($flag[$k] == 0) {
+                $table .= "<tr>
+                    <th>{$r['NOME PRODOTTO']}</th>
+                    <td>{$r['MARCA PRODOTTO']}</td>
+                    <td>{$r['QUANTITA PRODOTTO']}</td>
+                    <td><img src='../../assets/danger_icon.svg' style='max-width: 22px'></img></td>
+                </tr>";
+            }
+            $k++;
+        }
+
+        $num_prodotti = count($flag);
+        $costo_tot = 0;
+        for($s=0;$s<count($prezzo);$s++) { $costo_tot += $prezzo[$s]; }
+
+        $riep_table = "
+            <table class='table table-striped text-center'>
+                <thead>
+                    <tr>
+                        <th>NUMERO PRODOTTI</th>
+                        <th>QUANTITA' PRODOTTO</th>
+                        <th>COSTO TOTALE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{$num_prodotti}</td>
+                        <td>{$num_tot_item}</td>
+                        <td>{$costo_tot}</td>
+                    </tr>
+                </tbody>
+            </table>
+        ";
+
+        $table .= "</tbody></table>";
+        $body = "
+            <div class='container first-item'>
+                <div class='row'>
+                    <div class='col-6'>{$table}</div>
+                    <div class='col-1'></div>
+                    <div class='col-5'>
+                        <p class='h3'>Riepilogo Ordine</p>
+                        {$riep_table}
+                    </div>
+                </div>
+            </div>";
     }
 
     $html = "
@@ -84,5 +190,4 @@
     ";
 
     print_r($html);
-    print_r($_SESSION["nordine"]);
 ?>
