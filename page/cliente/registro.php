@@ -54,7 +54,8 @@
                 </div>              
             ";
         }else {
-            $flag = "
+            /*
+            $table = "
                 <table class='table table-bordered'>
                     <thead class='align-middle text-center'>
                         <tr>
@@ -68,14 +69,17 @@
                     </thead>
                     <tbody class='align-middle text-center'>
             ";
+            */
+
+            $flag = "<div class='accordion' id='accordionExample'>";
 
             foreach($risultato as $riga) {
-                if($riga["stato_ordine"] == 0) { $stato_ordine = "<span class='text-warning align-middle'>in attesa</span>"; }
-                else if($riga["stato_ordine"] == 1) { $stato_ordine = "<span class='text-secondary'>in preparazione</span>"; }
-                else if($riga["stato_ordine"] == 2) { $stato_ordine = "<span class='text-primary'>in consegna</span>"; }
-                else { $stato_ordine = "<span class='text-success'>consegnato</span>"; }
-                
-                $flag .= "
+                if($riga["stato_ordine"] == 0) { $stato_ordine = array("text-warning", "IN ATTESA"); }
+                else if($riga["stato_ordine"] == 1) { $stato_ordine = array("text-secondary", "IN PREPARAZIONE"); }
+                else if($riga["stato_ordine"] == 2) { $stato_ordine = array("text-primary", "IN CONSEGNA"); }
+                else { $stato_ordine = array("text-success", "CONSEGNATO"); }
+                /*
+                $table .= "
                     <tr>
                         <th>{$riga["ID"]}</th>
                         <td>{$riga["codice_ordine"]}</td>
@@ -85,9 +89,60 @@
                         <td><a href='./detordine.php?id={$riga["ID"]}'>informazioni</a></td>
                     </tr>
                 ";
-            }
+                */
 
-            $flag .= "</tbody></table>";
+                $flag .= "
+                <div class='modal fade' id='deleteModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                    <div class='modal-dialog'>
+                        <div class='modal-content'>
+                        <div class='modal-header'>
+                            <h5 class='modal-title' id='exampleModalLabel'>ATTENZIONE!</h5>
+                            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                        </div>
+                        <div class='modal-body'>
+                            <div class='alert alert-warning' role='alert'>
+                                Sei sicuro di voler eliminare l'ordine? L'operazione non è reversibile...
+                            </div>
+                        </div>
+                        <div class='modal-footer'>
+                            <button type='button' class='btn btn-outline-secondary' data-bs-dismiss='modal'>ANNULLA</button>
+                            <button type='button' class='btn btn-outline-danger'>ELIMINA ORDINE</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='accordion-item'>
+                    <h2 class='accordion-header' id='heading{$riga["ID"]}'>
+                    <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapse{$riga["ID"]}' aria-expanded='false' aria-controls='collapse{$riga["ID"]}'>
+                        <strong>CODICE ORDINE: {$riga["codice_ordine"]}</strong>
+                    </button>
+                    </h2>
+                    <div id='collapse{$riga["ID"]}' class='accordion-collapse collapse' aria-labelledby='heading{$riga["ID"]}' data-bs-parent='#accordionExample'>
+                    <div class='accordion-body'>
+                        <div class='row'>
+                            <div class='col-md-6'>
+                                <p><strong>ID ORDINE: </strong>{$riga["ID"]}</p>
+                                <p><strong>CODICE ORDINE: </strong>{$riga["codice_ordine"]}</p>
+                                <p><strong>DATA ORDINE: </strong>{$riga["data_ordine"]}</p>
+                            </div>
+                            <div class='col-md-6'>
+                                <p><strong>STATO ORDINE: </strong><span class='{$stato_ordine[0]}'>{$stato_ordine[1]}<span></p>
+                                <p><strong>TOTALE ORDINE: </strong>{$riga["totale_ordine"]} €</p>
+                                <div class='d-grid gap-2 d-md-flex justify-content-md-start'>
+                                    <a class='btn btn-outline-danger' data-bs-toggle='modal' data-bs-target='#deleteModal' type='button'>ELIMINA ORDINE</a>
+                                    <a href='./detordine.php?id={$riga["ID"]}' class='btn btn-outline-primary' type='button'>DETTAGLI</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                ";
+            }
+            /*
+            $table .= "</tbody></table>";
+            */
+            $flag .= "</div>";
         }
 
         $nav = "
@@ -138,6 +193,7 @@
                     {$nav}
                     {$body}
                 </div>
+                <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js' integrity='sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0' crossorigin='anonymous'></script>
             </body>
         </html>    
     ";
