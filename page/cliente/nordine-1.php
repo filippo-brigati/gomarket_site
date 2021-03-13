@@ -138,6 +138,10 @@
         $costo_tot = 0;
         for($s=0;$s<count($prezzo);$s++) { $costo_tot += $prezzo[$s]; }
 
+        $sql_indirizzo = "SELECT * FROM indirizzo WHERE fk_id_utente = {$_SESSION['ID_CLIENTE']}";
+        $risultato_indirizzo = connessione($sql_indirizzo, "gomarket");
+        $ris_ind_finale = $risultato_indirizzo[0];
+
         $riep_table = "
             <div class='accordion accordion-flush' id='accordionFlushExample'>
             <div class='accordion-item'>
@@ -168,21 +172,43 @@
                 </div>
             </div>
             <div class='accordion-item'>
-                <h2 class='accordion-header' id='flush-headingTwo'>
-                <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseTwo' aria-expanded='false' aria-controls='flush-collapseTwo'>
+                <h2 class='accordion-header' id='headingTwo'>
+                <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#collapseTwo' aria-expanded='false' aria-controls='collapseTwo'>
                     METODO PAGAMENTO
                 </button>
                 </h2>
-
+                <div id='collapseTwo' class='accordion-collapse collapse' aria-labelledby='headingTwo' data-bs-parent='#accordionExample'>
+                <div class='accordion-body'>
+                <div class='form-check'>
+                    <input class='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault1'>
+                    <label class='form-check-label' for='flexRadioDefault1'>
+                    Pagamento alla Consegna
+                    </label>
+                </div>
+                <div class='form-check'>
+                    <input class='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault2'>
+                    <label class='form-check-label' for='flexRadioDefault2'>
+                    Pagamento tramite Carta
+                    </label>
+                </div>
+                </div>
+                </div>
             </div>
             <div class='accordion-item'>
                 <h2 class='accordion-header' id='flush-headingThree'>
                 <button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#flush-collapseThree' aria-expanded='false' aria-controls='flush-collapseThree'>
-                    Accordion Item #3
+                    INDIRIZZO DI CONSEGNA
                 </button>
                 </h2>
                 <div id='flush-collapseThree' class='accordion-collapse collapse' aria-labelledby='flush-headingThree' data-bs-parent='#accordionFlushExample'>
-                <div class='accordion-body'>Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+                    <div class='container'>
+                            <div class='card-body'>
+                                Città: {$ris_ind_finale['citta']}<br>
+                                CAP: {$ris_ind_finale['CAP']}<br>
+                                via: {$ris_ind_finale['via']}<br>
+                                numero civico: {$ris_ind_finale['num_civico']}<br>
+                            </div>    
+                    </div>
                 </div>
             </div>
             </div>
@@ -198,7 +224,6 @@
                     <div class='col-6'>{$table}</div>
                     <div class='col-1'></div>
                     <div class='col-5'>
-                        <p class='h3'>Riepilogo Ordine</p>
                         {$riep_table}
                         <div class='d-flex'>
                             <div class='d-flex justify-content-end'>
