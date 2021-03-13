@@ -69,42 +69,61 @@
         $flag = array();
         $prezzo = array();
 
-        $sql = "SELECT * FROM prodotto";
-        $risultato = connessione($sql, "gomarket");
-
         $final_prod_array = array();
+        $i = 0;
         $s = 0;
 
         //print_r($risultato);
         //print_r($rows);
-        for($i=0;$i<count($rows);$i++) {
-            for($j=0;$j<count($risultato);$j++) {
-                //print_r($rows[$i]["NOME PRODOTTO"]."--");
-                //print_r($risultato[$j]["nome_prodotto"]."!!");
-                if($rows[$i]["NOME PRODOTTO"] == $risultato[$j]["nome_prodotto"] and $rows[$i]["MARCA PRODOTTO"] == $risultato[$j]["marca_prodotto"]) {
-                    $flag[$i] = 2;
-                    $prezzo[$i] = ($rows[$i]["QUANTITA PRODOTTO"]*$risultato[$j]["costo_unitario_prodotto"]);
-                    $final_prod_array[$s] = array($risultato[$j]["ID"], $rows[$i]["QUANTITA PRODOTTO"]);
-                    //print_r($rows[$i]["NOME PRODOTTO"]."--");
-                    //print_r($risultato[$j]["nome_prodotto"]."!!");
-                    break;
-                }else if($rows[$i]["NOME PRODOTTO"] == $risultato[$j]["nome_prodotto"] and $rows[$i]["MARCA PRODOTTO"] != $risultato[$j]["marca_prodotto"]) {
-                    $flag[$i] = 1;
-                    $prezzo[$i] = ($rows[$i]["QUANTITA PRODOTTO"]*$risultato[$j]["costo_unitario_prodotto"]);
-                    $final_prod_array[$s] = array($risultato[$j]["ID"], $rows[$i]["QUANTITA PRODOTTO"]);
-                    //print_r($rows[$i]["NOME PRODOTTO"]."--");
-                    //print_r($risultato[$j]["nome_prodotto"]."!!");
-                    break;
-                }else if($rows[$i]["NOME PRODOTTO"] != $risultato[$j]["nome_prodotto"] and $rows[$i]["MARCA PRODOTTO"] != $risultato[$j]["marca_prodotto"]) {
+
+        
+        foreach($rows as $r) {
+            $sql = "SELECT * FROM prodotto WHERE nome_prodotto = '{$r["NOME PRODOTTO"]}' AND marca_prodotto = '{$r["MARCA PRODOTTO"]}'";
+            $risultato = connessione($sql, "gomarket");
+
+            if(empty($risultato)) {
+                $flag[$i] = 0;
+                $prezzo[$i] = 0;
+            }else {
+                $flag[$i] = 2;
+                $prezzo[$i] = ($r["QUANTITA PRODOTTO"]*$risultato[0]["costo_unitario_prodotto"]);
+                $final_prod_array[$s] = array($risultato[0]["ID"], $r["QUANTITA PRODOTTO"]);  
+                $s++;           
+            }
+            $i++;
+        }
+        
+
+        /*
+        for($i = 0;$i<count($rows);$i++) {
+            foreach($risultato as $r) {
+                if($rows[$i]["NOME PRODOTTO"] != $r["nome_prodotto"] and $rows[$i]["MARCA PRODOTTO"] != $r["marca_prodotto"]) {
                     $flag[$i] = 0;
                     $prezzo[$i] = 0;
                     //print_r($rows[$i]["NOME PRODOTTO"]."--");
                     //print_r($risultato[$j]["nome_prodotto"]."!!");
-                    break;
+                    break 1;
                 }
-                $s++;
+                if($rows[$i]["NOME PRODOTTO"] == $r["nome_prodotto"] and $rows[$i]["MARCA PRODOTTO"] != $r["marca_prodotto"]) {
+                    $flag[$i] = 1;
+                    $prezzo[$i] = ($rows[$i]["QUANTITA PRODOTTO"]*$r["costo_unitario_prodotto"]);
+                    $final_prod_array[$s] = array($r["ID"], $rows[$i]["QUANTITA PRODOTTO"]);
+                    //print_r($rows[$i]["NOME PRODOTTO"]."--");
+                    //print_r($risultato[$j]["nome_prodotto"]."!!");
+                    break 1;
+                }
+                if($rows[$i]["NOME PRODOTTO"] == $r["nome_prodotto"] and $rows[$i]["MARCA PRODOTTO"] == $r["marca_prodotto"]) {
+                    $flag[$i] = 2;
+                    $prezzo[$i] = ($rows[$i]["QUANTITA PRODOTTO"]*$r["costo_unitario_prodotto"]);
+                    $final_prod_array[$s] = array($r["ID"], $rows[$i]["QUANTITA PRODOTTO"]);
+                    //print_r($rows[$i]["NOME PRODOTTO"]."--");
+                    //print_r($risultato[$j]["nome_prodotto"]."!!");
+                    break 1;
+                }
             }
         }
+        */
+
         //print_r($final_prod_array);
         //print_r($prezzo);
         //print_r($flag);
@@ -129,7 +148,7 @@
                     <th>{$r['NOME PRODOTTO']}</th>
                     <td>{$r['MARCA PRODOTTO']}</td>
                     <td>{$r['QUANTITA PRODOTTO']}</td>
-                    <td>{$prezzo[$k]}</td>
+                    <td>{$prezzo[$k]} €</td>
                 </tr>";
                 $num_tot_item += $r['QUANTITA PRODOTTO'];
             }else if($flag[$k] == 1) {
@@ -181,7 +200,7 @@
                             <tr>
                                 <td>{$num_prodotti}</td>
                                 <td>{$num_tot_item}</td>
-                                <td>{$costo_tot}</td>
+                                <td>{$costo_tot} €</td>
                             </tr>
                         </tbody>
                     </table>             
