@@ -38,7 +38,8 @@
         $num_prodotti = $_GET['np'];
         $num_tot_item = $_GET['nti'];
         $costo_tot = $_GET['ct'];
-    
+        $rows = $_SESSION['nordine'];
+
         $cod = generazioneCodice(6);
         $today = date("Y-m-d");
     
@@ -46,6 +47,19 @@
                 VALUES ('$cod', 0, $costo_tot, '$today', {$_SESSION['ID_CLIENTE']})";
     
         inserisci($sql, "gomarket");
+
+        $check_sql = "SELECT ID FROM ordine WHERE codice_ordine = '{$cod}'";
+        $id_ordine = connessione($check_sql, "gomarket");
+        $final_prod_array = $_SESSION["FINAL_PROD_ARRAY"];
+
+        //print_r($id_ordine[0]["ID"]);
+        //print_r($final_prod_array);
+
+        foreach($final_prod_array as $r) {
+            $prod_sql = "INSERT INTO prodotto_ordine (fk_id_prodotto, quantita_prodotto, fk_id_ordine)
+                         VALUES ($r[0], $r[1], {$id_ordine[0]["ID"]})";
+            inserisci($prod_sql, "gomarket");
+        }
 
         $nav = "
             <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>

@@ -53,7 +53,7 @@
                 </div>
                 <div class='col-6'>
                     <label for='example-date-input' class='form-label'>Data Di Nascita</label>
-                    <input class='form-control' type='date' value='2011-08-19' name='data_di_nascita' required>                   
+                    <input class='form-control' type='date' value='2011-08-19' name='data_di_nascita' required>                 
                 </div>
                 <div class='col-6'>
                     <label for='inputAddress2' class='form-label'>RUOLO</label><br>

@@ -36,7 +36,7 @@
             </div>
         ";
     }else {
-        $sql = "SELECT * FROM prodotto p, supermercato s WHERE p.fk_id_ordine = {$_GET["id"]} AND p.fk_id_supermercato = s.ID";
+        $sql = "SELECT * FROM prodotto_ordine po WHERE po.fk_id_ordine = {$_GET["id"]}";
         $risultato = connessione($sql, "gomarket");
 
         $flag = "
@@ -45,6 +45,7 @@
                     <tr>
                     <th scope='col'>NOME</th>
                     <th scope='col'>MARCA</th>
+                    <th scope='col'>QUANTITA'</th>
                     <th scope='col'>COSTO UNITARIO</th>
                     <th scope='col'>SUPERMERCATO</th>
                     </tr>
@@ -52,13 +53,22 @@
                 <tbody class='align-middle text-center'>
         ";
 
-        foreach($risultato as $riga) {     
+        foreach($risultato as $riga) { 
+            $prod_sql = "SELECT * FROM prodotto WHERE ID = {$riga["fk_id_prodotto"]}";
+            $ris = connessione($prod_sql, "gomarket");
+
+            $sup_sql = "SELECT nome_super FROM supermercato WHERE ID = {$ris[0]["fk_id_supermercato"]}";
+            $sup_ris = connessione($sup_sql, "gomarket");
+
+            //print_r($sup_ris);
+
             $flag .= "
                 <tr>
-                    <th>{$riga["nome_prodotto"]}</th>
-                    <td>{$riga["marca_prodotto"]}</td>
-                    <td>{$riga["costo_unitario_prodotto"]}</td>
-                    <td>{$riga["nome_super"]}</td>
+                    <th>{$ris[0]["nome_prodotto"]}</th>
+                    <td>{$ris[0]["marca_prodotto"]}</td>
+                    <td>{$riga["quantita_prodotto"]}</td>
+                    <td>{$ris[0]["costo_unitario_prodotto"]}</td>
+                    <td>{$sup_ris[0]["nome_super"]}</td>
                 </tr>
             ";
         }

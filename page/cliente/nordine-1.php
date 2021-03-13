@@ -64,35 +64,52 @@
 
         $rows = $_SESSION["nordine"];
 
+        //print_r($_SESSION["nordine"]);
+
         $flag = array();
         $prezzo = array();
 
         $sql = "SELECT * FROM prodotto";
         $risultato = connessione($sql, "gomarket");
 
+        $final_prod_array = array();
+        $s = 0;
+
         //print_r($risultato);
         //print_r($rows);
-
         for($i=0;$i<count($rows);$i++) {
             for($j=0;$j<count($risultato);$j++) {
+                //print_r($rows[$i]["NOME PRODOTTO"]."--");
+                //print_r($risultato[$j]["nome_prodotto"]."!!");
                 if($rows[$i]["NOME PRODOTTO"] == $risultato[$j]["nome_prodotto"] and $rows[$i]["MARCA PRODOTTO"] == $risultato[$j]["marca_prodotto"]) {
                     $flag[$i] = 2;
                     $prezzo[$i] = ($rows[$i]["QUANTITA PRODOTTO"]*$risultato[$j]["costo_unitario_prodotto"]);
+                    $final_prod_array[$s] = array($risultato[$j]["ID"], $rows[$i]["QUANTITA PRODOTTO"]);
+                    //print_r($rows[$i]["NOME PRODOTTO"]."--");
+                    //print_r($risultato[$j]["nome_prodotto"]."!!");
                     break;
                 }else if($rows[$i]["NOME PRODOTTO"] == $risultato[$j]["nome_prodotto"] and $rows[$i]["MARCA PRODOTTO"] != $risultato[$j]["marca_prodotto"]) {
                     $flag[$i] = 1;
                     $prezzo[$i] = ($rows[$i]["QUANTITA PRODOTTO"]*$risultato[$j]["costo_unitario_prodotto"]);
+                    $final_prod_array[$s] = array($risultato[$j]["ID"], $rows[$i]["QUANTITA PRODOTTO"]);
+                    //print_r($rows[$i]["NOME PRODOTTO"]."--");
+                    //print_r($risultato[$j]["nome_prodotto"]."!!");
                     break;
                 }else if($rows[$i]["NOME PRODOTTO"] != $risultato[$j]["nome_prodotto"] and $rows[$i]["MARCA PRODOTTO"] != $risultato[$j]["marca_prodotto"]) {
                     $flag[$i] = 0;
                     $prezzo[$i] = 0;
+                    //print_r($rows[$i]["NOME PRODOTTO"]."--");
+                    //print_r($risultato[$j]["nome_prodotto"]."!!");
                     break;
                 }
+                $s++;
             }
         }
+        //print_r($final_prod_array);
         //print_r($prezzo);
         //print_r($flag);
 
+        $_SESSION["FINAL_PROD_ARRAY"] = $final_prod_array;
         $k = 0;
         $num_tot_item = 0;
         $table = "<table class='table table-striped text-center'>
@@ -186,10 +203,44 @@
                     </label>
                 </div>
                 <div class='form-check'>
-                    <input class='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault2'>
+                    <input class='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault2' data-bs-toggle='modal' data-bs-target='#cardmodal'>
                     <label class='form-check-label' for='flexRadioDefault2'>
                     Pagamento tramite Carta
                     </label>
+                </div>
+                <div class='modal fade' id='cardmodal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                    <div class='modal-dialog'>
+                    <div class='modal-content'>
+                        <div class='modal-header'>
+                        <h5 class='modal-title' id='exampleModalLabel'>Inserisci Metodo Pagamento</h5>
+                        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                        </div>
+                        <div class='modal-body'>
+                            <div class='input-group mb-3'>
+                                <span class='input-group-text'>Numero Carta:</span>
+                                <input type='text' class='form-control'>
+                            </div>
+                            <div class='input-group mb-3'>
+                                <span class='input-group-text'>Data Scadenza Carta:</span>
+                                <input class='form-control' type='date' value='2011-08' name='' required> 
+                            </div>
+                            <div class='input-group mb-3'>
+                                <span class='input-group-text'>CV:</span>
+                                <input type='text' class='form-control'>
+                            </div>
+                            <div class='form-check'>
+                                <input class='form-check-input' type='checkbox' value='' id='flexCheckChecked'>
+                                <label class='form-check-label' for='flexCheckChecked'>
+                                    Ricorda Carta
+                                </label>
+                            </div>
+                        </div>
+                        <div class='modal-footer'>
+                        <button type='button' class='btn btn-outline-danger' data-bs-dismiss='modal'>ANNULLA</button>
+                        <button type='button' class='btn btn-outline-success'>CONFERMA</button>
+                        </div>
+                    </div>
+                    </div>
                 </div>
                 </div>
                 </div>
