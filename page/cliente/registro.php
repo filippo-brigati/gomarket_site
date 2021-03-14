@@ -74,10 +74,10 @@
             $flag = "<div class='accordion' id='accordionExample'>";
 
             foreach($risultato as $riga) {
-                if($riga["stato_ordine"] == 0) { $stato_ordine = array("text-warning", "IN ATTESA"); }
-                else if($riga["stato_ordine"] == 1) { $stato_ordine = array("text-secondary", "IN PREPARAZIONE"); }
-                else if($riga["stato_ordine"] == 2) { $stato_ordine = array("text-primary", "IN CONSEGNA"); }
-                else { $stato_ordine = array("text-success", "CONSEGNATO"); }
+                if($riga["stato_ordine"] == 0) { $stato_ordine = array("text-warning", "IN ATTESA", ""); }
+                else if($riga["stato_ordine"] == 1) { $stato_ordine = array("text-secondary", "IN PREPARAZIONE", ""); }
+                else if($riga["stato_ordine"] == 2) { $stato_ordine = array("text-primary", "IN CONSEGNA", "disabled"); }
+                else { $stato_ordine = array("text-success", "CONSEGNATO", "disabled"); }
                 /*
                 $table .= "
                     <tr>
@@ -129,7 +129,7 @@
                                 <p><strong>STATO ORDINE: </strong><span class='{$stato_ordine[0]}'>{$stato_ordine[1]}<span></p>
                                 <p><strong>TOTALE ORDINE: </strong>{$riga["totale_ordine"]} €</p>
                                 <div class='d-grid gap-2 d-md-flex justify-content-md-start'>
-                                    <a class='btn btn-outline-danger' data-bs-toggle='modal' data-bs-target='#deleteModal' type='button'>ELIMINA ORDINE</a>
+                                    <a class='btn btn-outline-danger {$stato_ordine[2]}' data-bs-toggle='modal' data-bs-target='#deleteModal' type='button'>CANCELLA ORDINE</a>
                                     <a href='./detordine.php?id={$riga["ID"]}' class='btn btn-outline-primary' type='button'>DETTAGLI</a>
                                 </div>
                             </div>
