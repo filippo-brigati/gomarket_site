@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Mar 05, 2021 alle 20:50
+-- Creato il: Mar 14, 2021 alle 12:17
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.4.1
 
@@ -67,7 +67,12 @@ CREATE TABLE `ordine` (
 
 INSERT INTO `ordine` (`ID`, `codice_ordine`, `stato_ordine`, `totale_ordine`, `data_ordine`, `fk_id_utente`) VALUES
 (1, 'f5Fuen', 3, 199.99, '2021-02-08', 1),
-(2, 'DWd8HC', 0, 59.99, '2020-12-09', 1);
+(2, 'DWd8HC', 0, 59.99, '2020-12-09', 1),
+(18, 'v6wx66', 0, 7.97, '2021-03-13', 2),
+(19, 'QSk1uq', 0, 7.97, '2021-03-13', 2),
+(20, 'lsSgYO', 0, 7.97, '2021-03-13', 2),
+(21, 'TATcg6', 0, 44.28, '2021-03-13', 2),
+(22, '3ILmCI', 0, 44.28, '2021-03-13', 1);
 
 -- --------------------------------------------------------
 
@@ -92,11 +97,44 @@ CREATE TABLE `prodotto` (
 INSERT INTO `prodotto` (`ID`, `nome_prodotto`, `descrizione_prodotto`, `marca_prodotto`, `costo_unitario_prodotto`, `dimensione_prodotto`, `fk_id_supermercato`) VALUES
 (1, 'cataneselle', 'Le Cataneselle ben rappresentano il gusto siciliano cui devono il nome.', 'barilla', 1.99, 500, 1),
 (2, 'farfalle', 'Delle farfalle vere hanno la leggiadria e la vivacità, ma il loro colore è quello luminoso del grano e del sole.\r\n\r\nAllegre e leggere, le Farfalle Barilla colorano la tavola con un tocco di fantasia. Più spesse al centro e sottili ai lati, volano di sapore in sapore, adattandosi ai più diversi abbinamenti di gusto.', 'barilla', 2, 500, 1),
-(3, 'Tortine di Grano Saraceno', 'Scopri il piacere delle merendine Conad ideali per una colazione dolce e nutriente o per uno snack veloce e gustoso - Inizia la tua giornata così: 1 Tortina di grano saraceno e gocce di cioccolato Conad + 1 Tazza di the (200cc) + 1 Yogurt cremoso (125cc) + Semi di girasole (30g) = 394kcal* * 20% del fabbisogno energetico in un regime alimentare di circa 2000 kcal/giornaliero', 'conad', 4.99, 230, 1),
+(3, 'Tortine', 'Scopri il piacere delle merendine Conad ideali per una colazione dolce e nutriente o per uno snack veloce e gustoso - Inizia la tua giornata così: 1 Tortina di grano saraceno e gocce di cioccolato Conad + 1 Tazza di the (200cc) + 1 Yogurt cremoso (125cc) + Semi di girasole (30g) = 394kcal* * 20% del fabbisogno energetico in un regime alimentare di circa 2000 kcal/giornaliero', 'youlty', 4.99, 230, 1),
 (4, 'Yogurt Greco Fragola', 'Yogurt Greco Autentico Fragola con pezzi di frutta 0% Grassi 170 g Senza conservanti e coloranti artificiali', 'conad', 1.29, 170, 1),
 (5, 'Cremosi Stracciatella Yogurt', 'Lo Yogurt Intero Conad dalla consistenza unica e cremosa è preparato con ingredienti genuini e latte fresco 100% italiano. Con un\'ampia scelta di gusti è l\'ideale per qualsiasi momento della giornata. - Senza conservanti - Senza coloranti artificiali - Latte fresco 100% Italiano', 'conad', 2.39, 125, 1),
 (6, 'Integrale Mezzi Rigatoni', ' La pasta integrale Conad, ottenuta grazie alla macinazione dell\'intero chicco del grano conservando le sue parti più pregiate, è ideale per chi cerca un benessere naturale e gustoso. Naturalmente ricca di fibre è una pasta di ottima consistenza e dal sapore rustico. La superficie ruvida trafilata al bronzo la rende particolarmente adatta ad assorbire i condimenti. È ottima abbinata a sughi con verdure, legumi e salse bianche. Conad ha scelto di utilizzare almeno il 51% di grano italiano, privilegiando le coltivazioni del nostro Paese', 'conad', 2.19, 500, 1),
 (7, 'Integrale Spaghetti', 'La pasta integrale Conad, ottenuta grazie alla macinazione dell\'intero chicco del grano conservando le sue parti più pregiate, è ideale per chi cerca un benessere naturale e gustoso. Naturalmente ricca di fibre è una pasta di ottima consistenza e dal sapore rustico. La superficie ruvida trafilata al bronzo la rende particolarmente adatta ad assorbire i condimenti. È ottima abbinata a sughi con verdure, legumi e salse bianche. Conad ha scelto di utilizzare almeno il 51% di grano italiano, privilegiando le coltivazioni del nostro Paese.', 'conad', 1.99, 500, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `prodotto_ordine`
+--
+
+CREATE TABLE `prodotto_ordine` (
+  `ID` int(3) NOT NULL,
+  `fk_id_prodotto` int(3) NOT NULL,
+  `quantita_prodotto` int(3) NOT NULL,
+  `fk_id_ordine` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `prodotto_ordine`
+--
+
+INSERT INTO `prodotto_ordine` (`ID`, `fk_id_prodotto`, `quantita_prodotto`, `fk_id_ordine`) VALUES
+(1, 1, 3, 19),
+(2, 2, 1, 19),
+(3, 1, 3, 20),
+(4, 2, 1, 20),
+(5, 1, 3, 21),
+(6, 2, 1, 21),
+(7, 3, 6, 21),
+(8, 6, 2, 21),
+(9, 7, 1, 21),
+(10, 1, 3, 22),
+(11, 2, 1, 22),
+(12, 3, 6, 22),
+(13, 6, 2, 22),
+(14, 7, 1, 22);
 
 -- --------------------------------------------------------
 
@@ -167,6 +205,12 @@ ALTER TABLE `prodotto`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indici per le tabelle `prodotto_ordine`
+--
+ALTER TABLE `prodotto_ordine`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indici per le tabelle `supermercato`
 --
 ALTER TABLE `supermercato`
@@ -192,13 +236,19 @@ ALTER TABLE `indirizzo`
 -- AUTO_INCREMENT per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT per la tabella `prodotto`
 --
 ALTER TABLE `prodotto`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT per la tabella `prodotto_ordine`
+--
+ALTER TABLE `prodotto_ordine`
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT per la tabella `supermercato`
