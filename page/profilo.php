@@ -107,16 +107,16 @@
         }
     
         $body = "
-            <div class='container first-item'>
-                <div class='row container'>
-                    <div class='col-6'>
+            <div class='first-item'>
+                <div class='row'>
+                    <div class='col-md-6'>
                         <img src='../assets/03.svg' class='img-fluid mx-auto d-block'>
                     </div>
-                    <div class='col-6'>
+                    <div class='col-md-6'>
                         <form name='update_form' action='../method/update_profile.php' method='post'>
-                            <div class='row container'>
-                                <div class='col-1'></div>
-                                <div class='col-11'>
+                            <div class='row'>
+                                <div class='col-md-1'></div>
+                                <div class='col-md-11' style='padding-top: 10px'>
                                     <div class='form-floating mb-3'>
                                         <input type='text' class='form-control' name='nome_utente' value='{$ris["nome"]}'>
                                         <label for='floatingInput'>Nome:</label>
@@ -181,6 +181,8 @@
     $html = "
         <html>
             <head>
+            <meta charset='utf-8'>
+            <meta name='viewport' content='width=device-width, initial-scale=1'>
             <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1' crossorigin='anonymous'>
             <link rel='preconnect' href='https://fonts.gstatic.com'>
             <link href='https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap' rel='stylesheet'>
@@ -192,6 +194,7 @@
                     {$nav}
                     {$body}
                 </div>
+                <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js' integrity='sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0' crossorigin='anonymous'></script>
             </body>
         </html>    
     ";
