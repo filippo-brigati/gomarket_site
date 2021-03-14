@@ -127,7 +127,7 @@
                             </div>
                             <div class='col-md-6'>
                                 <p><strong>STATO ORDINE: </strong><span class='{$stato_ordine[0]}'>{$stato_ordine[1]}<span></p>
-                                <p><strong>TOTALE ORDINE: </strong>{$riga["totale_ordine"]} €</p>
+                                <p><strong>TOTALE ORDINE: {$riga["totale_ordine"]} €</strong></p>
                                 <div class='d-grid gap-2 d-md-flex justify-content-md-start'>
                                     <a class='btn btn-outline-danger {$stato_ordine[2]}' data-bs-toggle='modal' data-bs-target='#deleteModal' type='button'>CANCELLA ORDINE</a>
                                     <a href='./detordine.php?id={$riga["ID"]}' class='btn btn-outline-primary' type='button'>DETTAGLI</a>

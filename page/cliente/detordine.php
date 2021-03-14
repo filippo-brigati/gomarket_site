@@ -36,6 +36,9 @@
             </div>
         ";
     }else {
+        $sql_ordine = "SELECT totale_ordine FROM ordine WHERE ID = {$_GET["id"]}";
+        $ris_tot_ordine = connessione($sql_ordine, "gomarket");
+
         $sql = "SELECT * FROM prodotto_ordine po WHERE po.fk_id_ordine = {$_GET["id"]}";
         $risultato = connessione($sql, "gomarket");
 
@@ -53,6 +56,9 @@
                 <tbody class='align-middle text-center'>
         ";
 
+        $p_couter = 0;
+        $q_couter = 0;
+
         foreach($risultato as $riga) { 
             $prod_sql = "SELECT * FROM prodotto WHERE ID = {$riga["fk_id_prodotto"]}";
             $ris = connessione($prod_sql, "gomarket");
@@ -61,6 +67,8 @@
             $sup_ris = connessione($sup_sql, "gomarket");
 
             //print_r($sup_ris);
+            $p_couter++;
+            $q_couter = $q_couter + $riga["quantita_prodotto"];
 
             $flag .= "
                 <tr>
@@ -104,7 +112,30 @@
 
         $body = "
             <div class='container first-item'>
-                {$flag}
+                <div class='row'>
+                    <div class='col-md-7'>
+                        {$flag}
+                    </div>
+                    <div class='col-md-5'>
+                        <table class='table table-bordered'>
+                            <thead class='align-middle text-center'>
+                                <tr>
+                                    <th>NUMERO PRODOTTI</th>
+                                    <th>QUANTITA' PRODOTTI</th>
+                                    <th>COSTO TOTALE</th>
+                                </tr>
+                            </thead>
+                            <tbody class='align-middle text-center'>
+                                <tr>
+                                    <td>{$p_couter}</td>
+                                    <td>{$q_couter}</td>
+                                    <td>{$ris_tot_ordine[0]["totale_ordine"]} €</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <img src='../../assets/09.svg' class='img-fluid mx-auto d-block'></img>
+                    </div>
+                </div>
             </div>
         ";
     }
