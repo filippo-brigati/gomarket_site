@@ -75,7 +75,6 @@
 
         //print_r($risultato);
         //print_r($rows);
-
         
         foreach($rows as $r) {
             $sql = "SELECT * FROM prodotto WHERE nome_prodotto = '{$r["NOME PRODOTTO"]}' AND marca_prodotto = '{$r["MARCA PRODOTTO"]}'";

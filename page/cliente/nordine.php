@@ -64,7 +64,7 @@
 
         $body = "
             <div class='container'>
-                <div class='container row first-item'>
+                <div class='row first-item'>
                     <div class='col-md-6 align-self-center'>
                     <img src='../../assets/06.svg' class='img-fluid mx-auto d-block'>
                     </div>

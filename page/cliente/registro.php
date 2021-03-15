@@ -106,7 +106,7 @@
                         </div>
                         <div class='modal-footer'>
                             <button type='button' class='btn btn-outline-secondary' data-bs-dismiss='modal'>ANNULLA</button>
-                            <button type='button' class='btn btn-outline-danger'>ELIMINA ORDINE</button>
+                            <a type='button' class='btn btn-outline-danger' href='../../method/delordine.php?id={$riga["ID"]}'>ELIMINA ORDINE</a>
                         </div>
                         </div>
                     </div>

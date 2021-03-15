@@ -73,10 +73,10 @@
 
             $flag .= "
                 <tr>
-                    <th>{$ris[0]["nome_prodotto"]}</th>
+                    <td>{$ris[0]["nome_prodotto"]}</td>
                     <td>{$ris[0]["marca_prodotto"]}</td>
                     <td>{$riga["quantita_prodotto"]}</td>
-                    <td>{$ris[0]["costo_unitario_prodotto"]}</td>
+                    <td>{$ris[0]["costo_unitario_prodotto"]} €</td>
                     <td>{$sup_ris[0]["nome_super"]}</td>
                 </tr>
             ";
