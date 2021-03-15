@@ -66,7 +66,7 @@
             <div class='container'>
                 <div class='row first-item'>
                     <div class='col-md-6 align-self-center'>
-                    <img src='../../assets/06.svg' class='img-fluid mx-auto d-block'>
+                    <img src='../../assets/16.svg' class='img-fluid mx-auto d-block'>
                     </div>
                     <div class='col-md-1 align-self-center'></div>
                     <div class='col-md-5 align-self-center'>
@@ -83,7 +83,7 @@
                         </form>
                     </div>
                 </div>
-            </div>       
+            </div>     
         ";
     }
 

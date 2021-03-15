@@ -92,7 +92,7 @@
             <div class='first-item'>
                 <div class='row'>
                     <div class='col-md-6'>
-                        <img src='../../assets/08.svg' class='img-fluid mx-auto d-block'>
+                        <img src='../../assets/17.svg' class='img-fluid mx-auto d-block'>
                     </div>
                     <div class='col-md-6 first-item'>
                         <div class='alert alert-success' role='alert'>

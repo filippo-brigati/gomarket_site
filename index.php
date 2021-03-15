@@ -5,7 +5,7 @@
     if(isset($_SESSION["NOME"])) {
         if($_SESSION["RUOLO"] == 0) {
             $nav = "
-                <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
+                <nav class='container navbar sticky-top navbar-expand-lg navbar-light bg-white'>
                     <div class='container-fluid'>
                     <a class='navbar-brand' href='./index.php'>GOMARKET</a>
                     <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
@@ -30,21 +30,32 @@
                     </div>
                 </nav>
             ";
-            
-            $welcome_banner = "<p class='subtitle fs-2 text-center'>Benvenuto {$_SESSION["NOME"]} sei pronto ad ordinare la tua prossima spesa?!<br></p>";
-            $img = "<img src='./assets/01.svg' class='img-fluid mx-auto d-block'>";
 
             $body = "
-                <div class='row first-item'>
-                <div class='col-lg-6 align-self-center'>
-                    {$welcome_banner}
+            <div class='row d-flex align-items-center pt-4'>
+                <div class='col-md-5'>
+                    <h1>Bentornato {$_SESSION["NOME"]}! Pronto ad Ordinare la tua prossima spesa?!</h1>
+                    <div class='pt-3'><a href='./page/cliente/nordine.php' type='button' class='btn btn-outline-primary btn-lg'>Nuovo Ordine</a></div>
                 </div>
-                    <div class='col-lg-6'>{$img}</div>
-                </div>            
+                <div class='col-lg-1'></div>
+                <div class='col-md-6'>
+                    <img src='./assets/14.svg' class='img-fluid mx-auto d-block'>
+                </div>
+            </div>
+            <div class='row d-flex align-items-center pt-4'>
+                <div class='col-md-6'>
+                    <img src='./assets/15.svg' class='img-fluid mx-auto d-block'>
+                </div>
+                <div class='col-lg-1'></div>
+                <div class='col-md-5'>
+                    <h3>Visualizza i prodotti disponibili, puoi scegliere tra diversi supermercati per trovare i prezzi migliori e le marche più adatte a te!</h3>
+                    <div class='pt-3'><a href='' type='button' class='btn btn-outline-primary btn-lg'>Visualizza Prodotti</a></div>
+                </div>
+            </div>
             ";
         }else {
             $nav = "
-                <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
+                <nav class='container navbar sticky-top navbar-expand-lg navbar-light bg-white'>
                     <div class='container-fluid'>
                     <a class='navbar-brand' href='./index.php'>GOMARKET</a>
                     <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
@@ -73,22 +84,42 @@
                 </nav>
             ";
             
-            $welcome_banner = "<p class='subtitle fs-2 text-center'>Benvenuto {$_SESSION["NOME"]} sei pronto a consegnare la tua prossima spesa?!<br></p>";
-            $img = "<img src='./assets/05.svg' class='img-fluid mx-auto d-block'>";
-
             $body = "
-                <div class='row first-item'>
-                <div class='col-lg-6 align-self-center'>
-                    {$welcome_banner}
+                <div class='row d-flex align-items-center pt-4'>
+                    <div class='col-md-5'>
+                        <h1>Bentornato {$_SESSION["NOME"]}! Pronto a guadagnare consegnando la tua prossima spesa?!</h1>
+                        <div class='pt-3'><a href='./page/cliente/nordine.php' type='button' class='btn btn-outline-primary btn-lg'>Visualizza Saldo</a></div>
+                    </div>
+                    <div class='col-lg-1'></div>
+                    <div class='col-md-6'>
+                        <img src='./assets/20.svg' class='img-fluid mx-auto d-block'>
+                    </div>
                 </div>
-                    <div class='col-lg-6'>{$img}</div>
-                </div>            
+                <div class='row d-flex align-items-center pt-4'>
+                    <div class='col-md-6'>
+                        <img src='./assets/21.svg' class='img-fluid mx-auto d-block'>
+                    </div>
+                    <div class='col-lg-1'></div>
+                    <div class='col-md-5'>
+                        <h3>Visualizza le richieste di consegna più vicine a te! Oppure esplora ordini più distanti!</h3>
+                        <div class='pt-3'><a href='' type='button' class='btn btn-outline-primary btn-lg'>Visualizza Richieste</a></div>
+                    </div>
+                </div>
+                <div class='row d-flex align-items-center pt-4'>
+                    <div class='col-md-5'>
+                        <h2>{$_SESSION["NOME"]} ricorda di mantenere le distanze e di non entrare in contatto con il cliente!</h2>
+                    </div>
+                    <div class='col-lg-1'></div>
+                    <div class='col-md-6'>
+                        <img src='./assets/22.svg' class='img-fluid mx-auto d-block'>
+                    </div>
+                </div>
             ";
         }
 
     }else {
         $nav = "
-            <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
+            <nav class='container navbar sticky-top navbar-expand-lg navbar-light bg-white'>
                 <div class='container-fluid'>
                 <a class='navbar-brand' href='./index.php'>GOMARKET</a>
                 <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
@@ -208,7 +239,7 @@
                 <title>GoMarket</title>
             </head>
             <body>
-                <div class='container'>{$nav}</div>
+                {$nav}
                 <div class='container'><div class='container'>{$body}</div></div>
                 {$footer}
                 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js' integrity='sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0' crossorigin='anonymous'></script>

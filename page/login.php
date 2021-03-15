@@ -32,7 +32,7 @@
     $body = "
         <div class='row first-item'>
             <div class='col-lg-6 align-self-center'>
-                <img src='../assets/02.svg'class='img-fluid mx-auto d-block'>
+                <img src='../assets/19.svg'class='img-fluid mx-auto d-block'>
             </div>
             <div class='col-lg-6 align-self-center'>
                 {$err}
@@ -45,6 +45,7 @@
                         <label for='formGroupExampleInput2' class='form-label'>Inserisci Password</label>
                         <input type='password' class='form-control' name='pwd' placeholder='password'>
                     </div>
+                    <p>Hai dimenticato la Password?<a href=''> Clicca Qui!</a></p>
                     <button type='submit' class='btn btn-light'>ACCEDI</button>
                 </form>
             </div>

@@ -110,7 +110,7 @@
             <div class='first-item'>
                 <div class='row'>
                     <div class='col-md-6'>
-                        <img src='../assets/03.svg' class='img-fluid mx-auto d-block'>
+                        <img src='../assets/18.svg' class='img-fluid mx-auto d-block'>
                     </div>
                     <div class='col-md-6'>
                         <form name='update_form' action='../method/update_profile.php' method='post'>
