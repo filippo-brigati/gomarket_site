@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Mar 14, 2021 alle 12:17
+-- Creato il: Mar 15, 2021 alle 14:47
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.4.1
 
@@ -66,13 +66,8 @@ CREATE TABLE `ordine` (
 --
 
 INSERT INTO `ordine` (`ID`, `codice_ordine`, `stato_ordine`, `totale_ordine`, `data_ordine`, `fk_id_utente`) VALUES
-(1, 'f5Fuen', 3, 199.99, '2021-02-08', 1),
-(2, 'DWd8HC', 0, 59.99, '2020-12-09', 1),
-(18, 'v6wx66', 0, 7.97, '2021-03-13', 2),
-(19, 'QSk1uq', 0, 7.97, '2021-03-13', 2),
-(20, 'lsSgYO', 0, 7.97, '2021-03-13', 2),
-(21, 'TATcg6', 0, 44.28, '2021-03-13', 2),
-(22, '3ILmCI', 0, 44.28, '2021-03-13', 1);
+(22, '3ILmCI', 0, 44.28, '2021-03-13', 1),
+(26, '0YVCTJ', 0, 44.28, '2021-03-15', 2);
 
 -- --------------------------------------------------------
 
@@ -121,20 +116,16 @@ CREATE TABLE `prodotto_ordine` (
 --
 
 INSERT INTO `prodotto_ordine` (`ID`, `fk_id_prodotto`, `quantita_prodotto`, `fk_id_ordine`) VALUES
-(1, 1, 3, 19),
-(2, 2, 1, 19),
-(3, 1, 3, 20),
-(4, 2, 1, 20),
-(5, 1, 3, 21),
-(6, 2, 1, 21),
-(7, 3, 6, 21),
-(8, 6, 2, 21),
-(9, 7, 1, 21),
 (10, 1, 3, 22),
 (11, 2, 1, 22),
 (12, 3, 6, 22),
 (13, 6, 2, 22),
-(14, 7, 1, 22);
+(14, 7, 1, 22),
+(30, 1, 3, 26),
+(31, 2, 1, 26),
+(32, 3, 6, 26),
+(33, 6, 2, 26),
+(34, 7, 1, 26);
 
 -- --------------------------------------------------------
 
@@ -236,7 +227,7 @@ ALTER TABLE `indirizzo`
 -- AUTO_INCREMENT per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT per la tabella `prodotto`
@@ -248,7 +239,7 @@ ALTER TABLE `prodotto`
 -- AUTO_INCREMENT per la tabella `prodotto_ordine`
 --
 ALTER TABLE `prodotto_ordine`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT per la tabella `supermercato`
