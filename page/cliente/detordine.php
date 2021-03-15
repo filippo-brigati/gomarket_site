@@ -43,6 +43,7 @@
         $risultato = connessione($sql, "gomarket");
 
         $flag = "
+            <div class='table-responsive'>
             <table class='table table-bordered'>
                 <thead class='align-middle text-center'>
                     <tr>
@@ -81,7 +82,7 @@
             ";
         }
 
-        $flag .= "</tbody></table>";
+        $flag .= "</tbody></table></div>";
 
         $nav = "
             <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
