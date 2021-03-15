@@ -2,6 +2,10 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+.blueback {
+    background-color: rgb(102, 106, 246);
+}
+
 .first-item {
     padding-top: 60px;
 }
