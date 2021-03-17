@@ -76,33 +76,33 @@
             ";
         }else {
             $nav = "
-                <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
-                    <div class='container-fluid'>
-                    <a class='navbar-brand' href='./index.php'>GOMARKET</a>
-                    <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
-                        <span class='navbar-toggler-icon'></span>
-                    </button>
-                    <div class='collapse navbar-collapse justify-content-end' id='navbarNav'>
-                        <ul class='navbar-nav'>
-                        <li class='nav-item'>
-                            <a class='nav-link' href='./fattorino/portafoglio.php'>PORTAFOGLIO</a>
-                        </li>
-                        <li class='nav-item'>
-                            <a class='nav-link' href='./fattorino/nconsegna.php'>NUOVA_CONSEGNA</a>
-                        </li>
-                        <li class='nav-item'>
-                            <a class='nav-link' href='./fattorino/registroconsegne.php'>REGISTRO_CONSEGNE</a>
-                        </li>
-                        <li class='nav-item'>
-                            <a class='nav-link' href='./profilo.php'>PROFILO</a>
-                        </li>
-                        <li class='nav-item'>
-                            <a class='nav-link' href='../method/logout.php'>LOGOUT</a>
-                        </li>                 
-                        </ul>
-                    </div>
-                    </div>
-                </nav>
+            <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
+                <div class='container-fluid'>
+                <a class='navbar-brand' href='../index.php'>GOMARKET</a>
+                <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
+                    <span class='navbar-toggler-icon'></span>
+                </button>
+                <div class='collapse navbar-collapse justify-content-end' id='navbarNav'>
+                    <ul class='navbar-nav'>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='./fattorino/portafoglio.php'>SALDO</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='./fattorino/nconsegna.php'>CONSEGNA</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='./fattorino/registroconsegne.php'>REGISTRO</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link active' href='./profilo.php'>PROFILO</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a class='nav-link' href='../method/logout.php'>LOGOUT</a>
+                    </li>                 
+                    </ul>
+                </div>
+                </div>
+            </nav>
             ";
         }
     
