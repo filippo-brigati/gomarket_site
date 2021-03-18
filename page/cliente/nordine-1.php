@@ -63,18 +63,11 @@
         ";
 
         $rows = $_SESSION["nordine"];
-
-        //print_r($_SESSION["nordine"]);
-
         $flag = array();
         $prezzo = array();
-
         $final_prod_array = array();
         $i = 0;
         $s = 0;
-
-        //print_r($risultato);
-        //print_r($rows);
         
         foreach($rows as $r) {
             $sql = "SELECT * FROM prodotto WHERE nome_prodotto = '{$r["NOME PRODOTTO"]}' AND marca_prodotto = '{$r["MARCA PRODOTTO"]}'";
@@ -91,41 +84,6 @@
             }
             $i++;
         }
-        
-
-        /*
-        for($i = 0;$i<count($rows);$i++) {
-            foreach($risultato as $r) {
-                if($rows[$i]["NOME PRODOTTO"] != $r["nome_prodotto"] and $rows[$i]["MARCA PRODOTTO"] != $r["marca_prodotto"]) {
-                    $flag[$i] = 0;
-                    $prezzo[$i] = 0;
-                    //print_r($rows[$i]["NOME PRODOTTO"]."--");
-                    //print_r($risultato[$j]["nome_prodotto"]."!!");
-                    break 1;
-                }
-                if($rows[$i]["NOME PRODOTTO"] == $r["nome_prodotto"] and $rows[$i]["MARCA PRODOTTO"] != $r["marca_prodotto"]) {
-                    $flag[$i] = 1;
-                    $prezzo[$i] = ($rows[$i]["QUANTITA PRODOTTO"]*$r["costo_unitario_prodotto"]);
-                    $final_prod_array[$s] = array($r["ID"], $rows[$i]["QUANTITA PRODOTTO"]);
-                    //print_r($rows[$i]["NOME PRODOTTO"]."--");
-                    //print_r($risultato[$j]["nome_prodotto"]."!!");
-                    break 1;
-                }
-                if($rows[$i]["NOME PRODOTTO"] == $r["nome_prodotto"] and $rows[$i]["MARCA PRODOTTO"] == $r["marca_prodotto"]) {
-                    $flag[$i] = 2;
-                    $prezzo[$i] = ($rows[$i]["QUANTITA PRODOTTO"]*$r["costo_unitario_prodotto"]);
-                    $final_prod_array[$s] = array($r["ID"], $rows[$i]["QUANTITA PRODOTTO"]);
-                    //print_r($rows[$i]["NOME PRODOTTO"]."--");
-                    //print_r($risultato[$j]["nome_prodotto"]."!!");
-                    break 1;
-                }
-            }
-        }
-        */
-
-        //print_r($final_prod_array);
-        //print_r($prezzo);
-        //print_r($flag);
 
         $_SESSION["FINAL_PROD_ARRAY"] = $final_prod_array;
         $k = 0;
@@ -171,6 +129,7 @@
 
         $num_prodotti = count($flag);
         $costo_tot = 0;
+
         for($s=0;$s<count($prezzo);$s++) { $costo_tot += $prezzo[$s]; }
 
         $sql_indirizzo = "SELECT * FROM indirizzo WHERE fk_id_utente = {$_SESSION['ID_CLIENTE']}";
@@ -284,8 +243,6 @@
         ";
 
         $table .= "</tbody></table>";
-
-        //<img src='../../assets/08.svg' style='max-width: 400px'></img>
 
         $body = "
             <div class='first-item'>

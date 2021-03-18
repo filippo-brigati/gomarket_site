@@ -35,8 +35,16 @@
             </div>
         ";
     }else {
-        $sql = "SELECT * FROM ordine_fattorino WHERE fk_id_fattorino = {$_SESSION["ID_CLIENTE"]}";
+        $sql = "SELECT of.fk_id_ordine, of.fk_id_cliente, fk_id_fattorino, o.stato_ordine, o.ID, o.codice_ordine, o.totale_ordine, o.data_ordine, i.CAP, i.citta, i.via, i.num_civico, u.nome, u.cognome, u.indirizzo_email
+                FROM ordine_fattorino of, ordine o, utente u, indirizzo i 
+                WHERE of.fk_id_fattorino = {$_SESSION["ID_CLIENTE"]}
+                AND of.fk_id_ordine = o.ID
+                AND of.fk_id_cliente = u.ID
+                AND of.fk_id_fattorino = {$_SESSION["ID_CLIENTE"]}
+                AND i.fk_id_utente = u.ID";
         $risultato = connessione($sql, "gomarket");
+
+        //print_r($risultato);
 
         if(empty($risultato)) {
             $flag = "
@@ -47,20 +55,21 @@
                     <div class='col-1 align-self-center'></div>
                     <div class='col-5 align-self-center'>
                         <div class='alert alert-warning' role='alert'>
-                            Non hai ancora effettuano una consegna...clicca <a href='./nordine.php'>qui </a>
+                            Non hai ancora accettato e completato nessuna consegna...clicca <a href='./nconsegna.php'>qui </a>
                             per iniziare!
                         </div>
                     </div>
                 </div>              
             ";
         }else {
+            
             $flag = "<div class='accordion' id='accordionExample'>";
 
             foreach($risultato as $riga) {
-                if($riga["stato_ordine"] == 0) { $stato_ordine = array("text-warning", "IN ATTESA", ""); }
-                else if($riga["stato_ordine"] == 1) { $stato_ordine = array("text-secondary", "IN PREPARAZIONE", ""); }
-                else if($riga["stato_ordine"] == 2) { $stato_ordine = array("text-primary", "IN CONSEGNA", "disabled"); }
-                else { $stato_ordine = array("text-success", "CONSEGNATO", "disabled"); }
+                if($riga["stato_ordine"] == 0) { $stato_ordine = array("text-warning", "IN ATTESA", "", ""); }
+                else if($riga["stato_ordine"] == 1) { $stato_ordine = array("text-secondary", "PRONTO PER LA SPEDIZIONE", "", "CONSEGNA ORDINE"); }
+                else if($riga["stato_ordine"] == 2) { $stato_ordine = array("text-primary", "IN CONSEGNA", "", "SEGNA COME CONSEGNATO"); }
+                else { $stato_ordine = array("text-success", "CONSEGNATO", "disabled", "CONSEGNATO"); }
 
                 $flag .= "
                 <div class='modal fade' id='deleteModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
@@ -99,9 +108,10 @@
                             <div class='col-md-6'>
                                 <p><strong>STATO ORDINE: </strong><span class='{$stato_ordine[0]}'>{$stato_ordine[1]}<span></p>
                                 <p><strong>TOTALE ORDINE: {$riga["totale_ordine"]} €</strong></p>
+                                <p><strong>DESTINATARIO ORDINE: {$riga["nome"]} {$riga["cognome"]}</p>
                                 <div class='d-grid gap-2 d-md-flex justify-content-md-start'>
-                                    <a class='btn btn-outline-danger {$stato_ordine[2]}' data-bs-toggle='modal' data-bs-target='#deleteModal' type='button'>CANCELLA ORDINE</a>
-                                    <a href='./detordine.php?id={$riga["ID"]}' class='btn btn-outline-primary' type='button'>DETTAGLI</a>
+                                    <a type='button' class='btn btn-outline-primary' href='./detordine.php?id={$riga["ID"]}'>DETTAGLI</a>
+                                    <a type='button' class='btn btn-outline-success {$stato_ordine[2]}' href='../../method/update_state.php?id={$riga["ID"]}&idcliente={$riga["fk_id_cliente"]}&so={$riga["stato_ordine"]}'>{$stato_ordine[3]}</a>
                                 </div>
                             </div>
                         </div>
@@ -112,6 +122,7 @@
             }
 
             $flag .= "</div>";
+
         }
 
         $nav = "

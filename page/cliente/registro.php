@@ -54,42 +54,13 @@
                 </div>              
             ";
         }else {
-            /*
-            $table = "
-                <table class='table table-bordered'>
-                    <thead class='align-middle text-center'>
-                        <tr>
-                        <th scope='col'>ID ORDINE</th>
-                        <th scope='col'>CODICE ORDINE</th>
-                        <th scope='col'>DATA ORDINE</th>
-                        <th scope='col'>STATO ORDINE</th>
-                        <th scope='col'>TOTALE ORDINE</th>
-                        <th scoper='col'>OPZIONI</th>
-                        </tr>
-                    </thead>
-                    <tbody class='align-middle text-center'>
-            ";
-            */
-
             $flag = "<div class='accordion' id='accordionExample'>";
 
             foreach($risultato as $riga) {
                 if($riga["stato_ordine"] == 0) { $stato_ordine = array("text-warning", "IN ATTESA", ""); }
-                else if($riga["stato_ordine"] == 1) { $stato_ordine = array("text-secondary", "IN PREPARAZIONE", ""); }
+                else if($riga["stato_ordine"] == 1) { $stato_ordine = array("text-secondary", "PRONTO PER LA SPEDIZIONE", ""); }
                 else if($riga["stato_ordine"] == 2) { $stato_ordine = array("text-primary", "IN CONSEGNA", "disabled"); }
                 else { $stato_ordine = array("text-success", "CONSEGNATO", "disabled"); }
-                /*
-                $table .= "
-                    <tr>
-                        <th>{$riga["ID"]}</th>
-                        <td>{$riga["codice_ordine"]}</td>
-                        <td>{$riga["data_ordine"]}</td>
-                        <td>{$stato_ordine}</td>
-                        <td>{$riga["totale_ordine"]}</td>
-                        <td><a href='./detordine.php?id={$riga["ID"]}'>informazioni</a></td>
-                    </tr>
-                ";
-                */
 
                 $flag .= "
                 <div class='modal fade' id='deleteModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
@@ -139,9 +110,7 @@
                 </div>
                 ";
             }
-            /*
-            $table .= "</tbody></table>";
-            */
+
             $flag .= "</div>";
         }
 
