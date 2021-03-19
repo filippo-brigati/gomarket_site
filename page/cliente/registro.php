@@ -35,7 +35,7 @@
             </div>
         ";
     }else {
-        $sql = "SELECT * FROM ordine o WHERE o.fk_id_utente = {$_SESSION["ID_CLIENTE"]}";
+        $sql = "SELECT * FROM ordine o WHERE o.fk_id_utente = {$_SESSION["ID_CLIENTE"]} ORDER BY o.data_ordine DESC";
         $risultato = connessione($sql, "gomarket");
 
         if(empty($risultato)) {
@@ -99,10 +99,10 @@
                             <div class='col-md-6'>
                                 <p><strong>STATO ORDINE: </strong><span class='{$stato_ordine[0]}'>{$stato_ordine[1]}<span></p>
                                 <p><strong>TOTALE ORDINE: {$riga["totale_ordine"]} €</strong></p>
-                                <div class='d-grid gap-2 d-md-flex justify-content-md-start'>
-                                    <a class='btn btn-outline-danger {$stato_ordine[2]}' data-bs-toggle='modal' data-bs-target='#deleteModal' type='button'>CANCELLA ORDINE</a>
-                                    <a href='./detordine.php?id={$riga["ID"]}' class='btn btn-outline-primary' type='button'>DETTAGLI</a>
-                                </div>
+                            </div>
+                            <div class='d-grid gap-2 d-md-flex justify-content-md-end float-end'>
+                                <a class='btn btn-outline-danger {$stato_ordine[2]}' data-bs-toggle='modal' data-bs-target='#deleteModal' type='button'>CANCELLA ORDINE</a>
+                                <a href='./detordine.php?id={$riga["ID"]}' class='btn btn-outline-primary' type='button'>DETTAGLI</a>
                             </div>
                         </div>
                     </div>
@@ -142,8 +142,13 @@
         ";
 
         $body = "
-            <div class='container first-item'>
-                {$flag}
+            <div class='row first-item'>
+                <div class='col-md-6'>
+                    {$flag}
+                </div>
+                <div class='col-md-6'>
+                    <img src='../../assets/25.svg' class='img-fluid mx-auto d-block'>
+                </div>
             </div>
         ";
     }

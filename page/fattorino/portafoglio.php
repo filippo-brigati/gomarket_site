@@ -65,10 +65,60 @@
             </nav>
         ";
 
-        $body = "
-            <div class='row'>
-                <div class='col-md-6'>
+        $sql = "SELECT * FROM ricompensa_fattorino WHERE fk_id_fattorino = {$_SESSION["ID_CLIENTE"]}";
+        $risultato = connessione($sql, "gomarket");
+        $count = 0;
+        $sum = 0;
 
+        $flag = "
+            <div class='table-responsive'>
+            <table class='table table-bordered'>
+                <thead class='align-middle text-center'>
+                    <tr>
+                        <th scope='col'>DATA ORDINE</th>
+                        <th scope='col'>RICOMPENSA ORDINE</th>
+                    </tr>
+                </thead>
+                <tbody class='align-middle text-center'>
+        ";
+
+        foreach($risultato as $riga) {
+            $flag .= "
+                <tr>
+                    <td>{$riga["data_ricompensa"]}</td>
+                    <td>{$riga["importo_ricompensa"]} €</td>
+                </tr>
+            ";
+            $count++;
+            $sum += $riga["importo_ricompensa"];
+        }
+        
+        $flag .= "</tbody></table></div>";
+        $med = $sum/$count;
+
+        $body = "
+            <div class='row first-item'>
+                <div class='col-md-6'>
+                    <div class='table-responsive'>
+                        <table class='table table-bordered'>
+                            <thead class='align-middle text-center'>
+                                <tr>
+                                    <th scope='col'>CONSEGNE TOTALI</th>
+                                    <th scope='col'>RICOMPENSA TOTALE</th>
+                                    <th scope='col'>GUADAGNO MEDIO</th>
+                                </tr>
+                            </thead>
+                            <tbody class='align-middle text-center'>
+                                <tr>
+                                    <td>{$count}</td>
+                                    <td>{$sum} €</td>
+                                    <td>{$med} €</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    {$flag}
                 </div>
                 <div class='col-md-6'>
                     <img src='../../assets/23.svg' class='img-fluid mx-auto d-block'>

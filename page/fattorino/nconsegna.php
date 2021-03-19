@@ -114,6 +114,8 @@
                         </div>
                         <div class='col-md-6'>
                             <p><strong>TOTALE ORDINE: {$riga["totale_ordine"]} €</strong></p>
+                            <p><strong>CITTÁ: </strong>{$riga["citta"]}</p>
+                            <p><strong>INDIRIZZO: </strong>{$riga["via"]} {$riga["num_civico"]}</p>
                             <div class='d-grid gap-2 d-md-flex justify-content-md-start'>
                                 <a class='btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#pickmodal' type='button'>CONSEGNA ORDINE</a>
                             </div>

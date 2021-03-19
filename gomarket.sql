@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Mar 15, 2021 alle 14:47
+-- Creato il: Mar 19, 2021 alle 18:13
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.4.1
 
@@ -66,8 +66,43 @@ CREATE TABLE `ordine` (
 --
 
 INSERT INTO `ordine` (`ID`, `codice_ordine`, `stato_ordine`, `totale_ordine`, `data_ordine`, `fk_id_utente`) VALUES
-(22, '3ILmCI', 0, 44.28, '2021-03-13', 1),
-(26, '0YVCTJ', 0, 44.28, '2021-03-15', 2);
+(26, '0YVCTJ', 0, 44.28, '2021-03-15', 2),
+(27, 'Yy2wpd', 0, 44.28, '2021-03-15', 2),
+(28, 'DuUfap', 0, 44.28, '2021-03-15', 2),
+(29, 'OmFaAa', 3, 44.28, '2021-03-17', 1),
+(31, 'gOpFQ4', 3, 57.9, '2021-03-19', 1),
+(32, 'jnNmnJ', 3, 57.9, '2021-03-19', 1),
+(33, 'cmfado', 3, 57.9, '2021-03-19', 1),
+(34, 'TI6BVJ', 3, 57.9, '2021-03-19', 1),
+(35, 'sUXUqP', 3, 57.9, '2021-03-19', 1),
+(36, 'PQ5dFA', 3, 70.75, '2021-03-19', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `ordine_fattorino`
+--
+
+CREATE TABLE `ordine_fattorino` (
+  `ID` int(3) NOT NULL,
+  `fk_id_ordine` int(3) NOT NULL,
+  `fk_id_cliente` int(3) NOT NULL,
+  `fk_id_fattorino` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `ordine_fattorino`
+--
+
+INSERT INTO `ordine_fattorino` (`ID`, `fk_id_ordine`, `fk_id_cliente`, `fk_id_fattorino`) VALUES
+(4, 29, 1, 3),
+(5, 30, 1, 3),
+(6, 31, 1, 3),
+(7, 32, 1, 3),
+(8, 33, 1, 3),
+(9, 34, 1, 3),
+(10, 35, 1, 3),
+(11, 36, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -96,7 +131,13 @@ INSERT INTO `prodotto` (`ID`, `nome_prodotto`, `descrizione_prodotto`, `marca_pr
 (4, 'Yogurt Greco Fragola', 'Yogurt Greco Autentico Fragola con pezzi di frutta 0% Grassi 170 g Senza conservanti e coloranti artificiali', 'conad', 1.29, 170, 1),
 (5, 'Cremosi Stracciatella Yogurt', 'Lo Yogurt Intero Conad dalla consistenza unica e cremosa è preparato con ingredienti genuini e latte fresco 100% italiano. Con un\'ampia scelta di gusti è l\'ideale per qualsiasi momento della giornata. - Senza conservanti - Senza coloranti artificiali - Latte fresco 100% Italiano', 'conad', 2.39, 125, 1),
 (6, 'Integrale Mezzi Rigatoni', ' La pasta integrale Conad, ottenuta grazie alla macinazione dell\'intero chicco del grano conservando le sue parti più pregiate, è ideale per chi cerca un benessere naturale e gustoso. Naturalmente ricca di fibre è una pasta di ottima consistenza e dal sapore rustico. La superficie ruvida trafilata al bronzo la rende particolarmente adatta ad assorbire i condimenti. È ottima abbinata a sughi con verdure, legumi e salse bianche. Conad ha scelto di utilizzare almeno il 51% di grano italiano, privilegiando le coltivazioni del nostro Paese', 'conad', 2.19, 500, 1),
-(7, 'Integrale Spaghetti', 'La pasta integrale Conad, ottenuta grazie alla macinazione dell\'intero chicco del grano conservando le sue parti più pregiate, è ideale per chi cerca un benessere naturale e gustoso. Naturalmente ricca di fibre è una pasta di ottima consistenza e dal sapore rustico. La superficie ruvida trafilata al bronzo la rende particolarmente adatta ad assorbire i condimenti. È ottima abbinata a sughi con verdure, legumi e salse bianche. Conad ha scelto di utilizzare almeno il 51% di grano italiano, privilegiando le coltivazioni del nostro Paese.', 'conad', 1.99, 500, 1);
+(7, 'Integrale Spaghetti', 'La pasta integrale Conad, ottenuta grazie alla macinazione dell\'intero chicco del grano conservando le sue parti più pregiate, è ideale per chi cerca un benessere naturale e gustoso. Naturalmente ricca di fibre è una pasta di ottima consistenza e dal sapore rustico. La superficie ruvida trafilata al bronzo la rende particolarmente adatta ad assorbire i condimenti. È ottima abbinata a sughi con verdure, legumi e salse bianche. Conad ha scelto di utilizzare almeno il 51% di grano italiano, privilegiando le coltivazioni del nostro Paese.', 'conad', 1.99, 500, 1),
+(8, 'Spaghettoni n 412', 'Gli Spaghettoni, variante più grossa e corposa dei classici Spaghetti, sono particolarmente indicati per piatti dai sapori forti e decisi o per ricette che prevedano il \"salto\" in padella. Ottimi con fiori di zucca, con sugo d\'agnello, rigaglie di pollo o molluschi.', 'de cecco', 2.69, 500, 2),
+(9, 'Sedanini', 'Variante piu piccola dei classici Sedani Rigati, i Sedanini sono ottimi nella preparazione di minestroni e minestre, ma possono essere gustati anche con condimenti leggeri di pomodoro. Sono consigliati inoltre sughi di verdure a base di pomodoro e legumi.', 'de cecco', 1.89, 500, 2),
+(10, 'Trivelli', 'I Trivelli sono una gustosa variante più piccola dei classici Tortiglioni.\r\n\r\nSono un formato particolarmente versatile e allo stesso tempo originale, che predilige per tradizione i gusti corposi.\r\n\r\nI Trivelli sono ottimi se conditi con ragù a base di carne di manzo o di maiale, o con sughi leggeri a base di pomodoro. Si abbinano bene anche a sughi di verdure a base di funghi, carciofi, peperoni, melanzane. Vengono impiegati ottimamente anche per la preparazione di pasticci al forno.', 'de cecco', 4.89, 1000, 2),
+(11, 'Mezzi Tufoli', 'Variante più corta dei classici Tufoli, i Mezzi Tufoli fanno parte delle paste corte a taglio dritto, lisce.\r\n\r\nL\'origine geografica di questo formato non è certa e ne esistono numerose denominazioni locali: Maniche, Gigantoni, Occhi di elefante, Elefante, Canneroni grandi, Occhi di bove.\r\n\r\nL’assenza di rigature è compensata da una sorprendente morbidezza, che regala al palato sensazioni sublimi. Delicate e raffinate, esaltano al massimo aromi, sapori e profumi.\r\n\r\nI condimenti consigliati per i Mezzi Tufoli sono i ragù di carne ma anche i sughi di verdure a base di funghi, carciofi e melanzane. Ottimi anche abbinati ai sughi con legumi come fagioli, piselli, ceci, fave e lenticchie.', '500', 2.59, 500, 2),
+(12, 'Mezzi Pennoni Rigati', 'I Mezzi Pennoni Rigati sono una variante più grande delle classiche Mezze Penne Rigate e, grazie alla loro dimensione, riescono a trattenere al meglio i condimenti.\r\n\r\nIl termine Penne fa riferimento, nella lingua italiana, alla penna d\'oca anticamente utilizzata per scrivere e che veniva tagliata di sbieco per ottenere una punta dal tratto sottile. Il formato, ottenuto da un tubo di pasta, liscio o rigato, di lunghezza variabile, presenta il caratteristico taglio diagonale tipico della penna da scrittura.', 'de cecco', 3.29, 500, 2),
+(13, 'Orecchiette Grandi', 'Le Orecchiette tradizionali, anche dette \"strascinati\", sono il formato più tipico della cucina pugliese e la loro forma ricorda i cappelli che i contadini indossavano per proteggersi dal sole cocente.\r\n\r\nQuesta versione più grande è ideale per accompagnare ragù sostanziosi, condimenti a base di verdure, funghi ed è insuperabile con ricotta e pecorino.', 'de cecco', 2.49, 500, 2);
 
 -- --------------------------------------------------------
 
@@ -116,16 +157,92 @@ CREATE TABLE `prodotto_ordine` (
 --
 
 INSERT INTO `prodotto_ordine` (`ID`, `fk_id_prodotto`, `quantita_prodotto`, `fk_id_ordine`) VALUES
-(10, 1, 3, 22),
-(11, 2, 1, 22),
-(12, 3, 6, 22),
-(13, 6, 2, 22),
-(14, 7, 1, 22),
 (30, 1, 3, 26),
 (31, 2, 1, 26),
 (32, 3, 6, 26),
 (33, 6, 2, 26),
-(34, 7, 1, 26);
+(34, 7, 1, 26),
+(35, 1, 3, 27),
+(36, 2, 1, 27),
+(37, 3, 6, 27),
+(38, 6, 2, 27),
+(39, 7, 1, 27),
+(40, 1, 3, 28),
+(41, 2, 1, 28),
+(42, 3, 6, 28),
+(43, 6, 2, 28),
+(44, 7, 1, 28),
+(45, 1, 3, 29),
+(46, 2, 1, 29),
+(47, 3, 6, 29),
+(48, 6, 2, 29),
+(49, 7, 1, 29),
+(57, 1, 3, 31),
+(58, 2, 1, 31),
+(59, 3, 6, 31),
+(60, 6, 2, 31),
+(61, 7, 1, 31),
+(62, 4, 5, 31),
+(63, 5, 3, 31),
+(64, 1, 3, 32),
+(65, 2, 1, 32),
+(66, 3, 6, 32),
+(67, 6, 2, 32),
+(68, 7, 1, 32),
+(69, 4, 5, 32),
+(70, 5, 3, 32),
+(71, 1, 3, 33),
+(72, 2, 1, 33),
+(73, 3, 6, 33),
+(74, 6, 2, 33),
+(75, 7, 1, 33),
+(76, 4, 5, 33),
+(77, 5, 3, 33),
+(78, 1, 3, 34),
+(79, 2, 1, 34),
+(80, 3, 6, 34),
+(81, 6, 2, 34),
+(82, 7, 1, 34),
+(83, 4, 5, 34),
+(84, 5, 3, 34),
+(85, 1, 3, 35),
+(86, 2, 1, 35),
+(87, 3, 6, 35),
+(88, 6, 2, 35),
+(89, 7, 1, 35),
+(90, 4, 5, 35),
+(91, 5, 3, 35),
+(92, 1, 3, 36),
+(93, 2, 1, 36),
+(94, 3, 6, 36),
+(95, 6, 2, 36),
+(96, 7, 1, 36),
+(97, 4, 5, 36),
+(98, 5, 3, 36),
+(99, 12, 2, 36),
+(100, 13, 1, 36),
+(101, 9, 2, 36);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `ricompensa_fattorino`
+--
+
+CREATE TABLE `ricompensa_fattorino` (
+  `ID` int(11) NOT NULL,
+  `importo_ricompensa` float NOT NULL,
+  `data_ricompensa` date NOT NULL,
+  `fk_id_fattorino` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `ricompensa_fattorino`
+--
+
+INSERT INTO `ricompensa_fattorino` (`ID`, `importo_ricompensa`, `data_ricompensa`, `fk_id_fattorino`) VALUES
+(2, 11.58, '2021-03-19', 3),
+(3, 14.15, '2021-03-19', 3);
 
 -- --------------------------------------------------------
 
@@ -144,7 +261,8 @@ CREATE TABLE `supermercato` (
 --
 
 INSERT INTO `supermercato` (`ID`, `nome_super`, `desc_super`) VALUES
-(1, 'conad', 'persone oltre le cose');
+(1, 'conad', 'persone oltre le cose'),
+(2, 'esselunga', 'supermercato esselunga');
 
 -- --------------------------------------------------------
 
@@ -190,6 +308,12 @@ ALTER TABLE `ordine`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indici per le tabelle `ordine_fattorino`
+--
+ALTER TABLE `ordine_fattorino`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indici per le tabelle `prodotto`
 --
 ALTER TABLE `prodotto`
@@ -199,6 +323,12 @@ ALTER TABLE `prodotto`
 -- Indici per le tabelle `prodotto_ordine`
 --
 ALTER TABLE `prodotto_ordine`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indici per le tabelle `ricompensa_fattorino`
+--
+ALTER TABLE `ricompensa_fattorino`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -227,25 +357,37 @@ ALTER TABLE `indirizzo`
 -- AUTO_INCREMENT per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT per la tabella `ordine_fattorino`
+--
+ALTER TABLE `ordine_fattorino`
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT per la tabella `prodotto`
 --
 ALTER TABLE `prodotto`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT per la tabella `prodotto_ordine`
 --
 ALTER TABLE `prodotto_ordine`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+
+--
+-- AUTO_INCREMENT per la tabella `ricompensa_fattorino`
+--
+ALTER TABLE `ricompensa_fattorino`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `supermercato`
 --
 ALTER TABLE `supermercato`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT per la tabella `utente`

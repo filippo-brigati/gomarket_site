@@ -130,10 +130,6 @@
                                         <label for='floatingInput'>Indirizzo Email:</label>
                                     </div>
                                     <div class='form-floating mb-3'>
-                                        <input type='password' class='form-control' name='password_utente' value='{$ris["pwd"]}' disabled>
-                                        <label for='floatingInput'>Password:</label>
-                                    </div>
-                                    <div class='form-floating mb-3'>
                                         <input type='text' class='form-control' name='username' value='{$ris["nome_utente"]}'>
                                         <label for='floatingInput'>Username:</label>
                                     </div>
@@ -144,13 +140,6 @@
                                     <div class='form-floating mb-3'>
                                         <input type='date' class='form-control' name='data_di_nascita' value='{$ris["data_di_nascita"]}'>
                                         <label for='floatingInput'>Data Di Nascita:</label>
-                                    </div>
-                                    <div class='form-floating mb-3'>
-                                        <select class='form-select' aria-label='Floating label select example' name='ruolo' disabled>
-                                        <option value='0' {$sel_zero}>CLIENTE</option>
-                                        <option value='1' {$sel_uno}>FATTORINO</option>
-                                        </select>
-                                        <label for='floatingSelect'>Ruolo:</label>
                                     </div>
                                     <div class='form-floating mb-3'>
                                         <input type='text' class='form-control' name='regione_utente' value='{$ris["citta"]}'>

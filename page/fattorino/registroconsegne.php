@@ -107,11 +107,11 @@
                             </div>
                             <div class='col-md-6'>
                                 <p><strong>STATO ORDINE: </strong><span class='{$stato_ordine[0]}'>{$stato_ordine[1]}<span></p>
-                                <p><strong>TOTALE ORDINE: {$riga["totale_ordine"]} €</strong></p>
-                                <p><strong>DESTINATARIO ORDINE: {$riga["nome"]} {$riga["cognome"]}</p>
+                                <p><strong>TOTALE ORDINE: </strong>{$riga["totale_ordine"]} €</p>
+                                <p><strong>DESTINATARIO ORDINE: </strong>{$riga["nome"]} {$riga["cognome"]}</p>
                                 <div class='d-grid gap-2 d-md-flex justify-content-md-start'>
                                     <a type='button' class='btn btn-outline-primary' href='./detordine.php?id={$riga["ID"]}'>DETTAGLI</a>
-                                    <a type='button' class='btn btn-outline-success {$stato_ordine[2]}' href='../../method/update_state.php?id={$riga["ID"]}&idcliente={$riga["fk_id_cliente"]}&so={$riga["stato_ordine"]}'>{$stato_ordine[3]}</a>
+                                    <a type='button' class='btn btn-outline-success {$stato_ordine[2]}' href='../../method/update_state.php?id={$riga["ID"]}&idcliente={$riga["fk_id_cliente"]}&so={$riga["stato_ordine"]}&tot={$riga["totale_ordine"]}'>{$stato_ordine[3]}</a>
                                 </div>
                             </div>
                         </div>
@@ -156,8 +156,13 @@
         ";
 
         $body = "
-            <div class='container first-item'>
-                {$flag}
+            <div class='row container first-item'>
+                <div class='col-md-6'>
+                    {$flag}
+                </div>
+                <div class='col-md-6'>
+                    <img src='../../assets/25.svg' class='img-fluid mx-auto d-block'>
+                </div>
             </div>
         ";
     }
