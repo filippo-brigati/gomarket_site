@@ -8,6 +8,12 @@
         $err = "";
     }
 
+    if(isset($_SESSION["feed_rec_pwd"])) {
+        $feed = $_SESSION["feed_rec_pwd"];
+    }else {
+        $feed = "";
+    }
+
     $nav = "
         <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
             <div class='container-fluid'>
@@ -30,12 +36,35 @@
     ";
 
     $body = "
+        <div class='modal fade' id='resetpwd' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLabel'>RECUPERO PASSWORD</h5>
+                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+            </div>
+            <form name='recpwd' action='../method/rec_pwd.php' method='post'>
+                <div class='modal-body'>
+                    <div class='mb-3'>
+                        <label for='exampleFormControlInput1' class='form-label'>Inserisci Indirizzo Mail</label>
+                        <input type='email' class='form-control' id='exampleFormControlInput1' name='mail' placeholder='name@example.com'>
+                    </div>
+                </div>
+                <div class='modal-footer'>
+                    <button type='button' class='btn btn-danger' data-bs-dismiss='modal'>CHIUDI</button>
+                    <button type='submit' class='btn btn-primary'>CONFERMA</button>
+                </div>
+                </div>
+            </form>
+        </div>
+        </div>
         <div class='row first-item'>
             <div class='col-lg-6 align-self-center'>
                 <img src='../assets/19.svg'class='img-fluid mx-auto d-block'>
             </div>
             <div class='col-lg-6 align-self-center'>
                 {$err}
+                {$feed}
                 <form name='login' action='../method/check.php' method='post'>
                     <div class='mb-3'>
                         <label for='formGroupExampleInput' class='form-label'>Inserisci Indirizzo Mail</label>
@@ -45,7 +74,7 @@
                         <label for='formGroupExampleInput2' class='form-label'>Inserisci Password</label>
                         <input type='password' class='form-control' name='pwd' placeholder='password'>
                     </div>
-                    <p>Hai dimenticato la Password?<a href=''> Clicca Qui!</a></p>
+                    <p>Hai dimenticato la Password? <a href='' type='button' data-bs-toggle='modal' data-bs-target='#resetpwd'> Clicca Qui!</a></p>
                     <button type='submit' class='btn btn-light'>ACCEDI</button>
                 </form>
             </div>
