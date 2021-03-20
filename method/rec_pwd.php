@@ -33,7 +33,7 @@
             $mail->Host = "smtp.gmail.com";
             $mail->SMTPAuth = true;
             $mail->Username = "COMPANY_EMAIL";
-            $mail->Password = 'COMPANY_PWD';
+            $mail->Password = 'EMAIL_PWD';
             $mail->Port = 465; //587
             $mail->SMTPSecure = "ssl"; //tls
     
