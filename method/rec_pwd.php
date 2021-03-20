@@ -32,14 +32,14 @@
             $mail->isSMTP();
             $mail->Host = "smtp.gmail.com";
             $mail->SMTPAuth = true;
-            $mail->Username = "fillobrix2002@gmail.com";
-            $mail->Password = 'filippobrigati2002';
+            $mail->Username = "COMPANY_EMAIL";
+            $mail->Password = 'COMPANY_PWD';
             $mail->Port = 465; //587
             $mail->SMTPSecure = "ssl"; //tls
     
             //Email Settings
             $mail->isHTML(true);
-            $mail->setFrom("fillobrix2002@gmail.com");
+            $mail->setFrom("COMPANY_EMAIL");
             $mail->addAddress($email);
             $mail->Subject = $subject;
             $mail->Body = $body;
