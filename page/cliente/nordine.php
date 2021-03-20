@@ -77,7 +77,7 @@
                             </div>
                             <div class='alert alert-warning' role='alert'>
                                 ATTENZIONE! Il file deve evere come estensione .xls / .xlsx,
-                                per non sbagliare scarica il template da <a href='#'>qui</a>
+                                per non sbagliare scarica il template cliccando <a href='../../method/download_file.php?link=spesa_pw.xlsx'>qui</a>
                             </div>
                             <button type='submit' class='btn btn-light'>AVANTI</button>
                         </form>

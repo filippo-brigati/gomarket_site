@@ -136,6 +136,59 @@
         $risultato_indirizzo = connessione($sql_indirizzo, "gomarket");
         $ris_ind_finale = $risultato_indirizzo[0];
 
+        $modal_content = "";
+        $is_checked = "";
+
+        $check_card = "SELECT * FROM carta_credito WHERE fk_id_utente = {$_SESSION['ID_CLIENTE']}";
+        $result_card = connessione($check_card, "gomarket");
+        if(!isset($result_card[0])) {
+            $modal_content .= "
+                <form name='credit_card_form' action='../../method/add_cc.php' method='post'>
+                    <div class='input-group mb-3'>
+                        <span class='input-group-text'>Numero Carta:</span>
+                        <input type='text' class='form-control' name='n_card' required>
+                    </div>
+                    <div class='input-group mb-3'>
+                        <span class='input-group-text'>Data Scadenza Carta:</span>
+                        <input class='form-control' type='date' value='2011-08' name='d_scad' required> 
+                    </div>
+                    <div class='input-group mb-3'>
+                        <span class='input-group-text' required>CV:</span>
+                        <input type='text' class='form-control' name='cv'>
+                    </div>
+                    <div class='form-check'>
+                        <input class='form-check-input' type='checkbox' value='' name='remember' id='flexCheckChecked'>
+                        <label class='form-check-label' for='flexCheckChecked'>
+                            Ricorda Carta
+                        </label>
+                    </div>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-outline-danger' data-bs-dismiss='modal'>ANNULLA</button>
+                        <button type='submit' class='btn btn-outline-success'>CONFERMA</button>
+                    </div>
+                </form>
+            ";
+        }else {
+            foreach($result_card as $rc) {
+                $str_card = "**** **** **** ".substr($rc["numero_carta"],12);
+
+                $modal_content .= "
+                    <div class='form-check'>
+                        <input class='form-check-input' type='checkbox' value='' name='card' id='flexCheckChecked'>
+                        <label class='form-check-label' for='flexCheckChecked'>
+                            {$str_card}
+                        </label>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-outline-success' data-bs-dismiss='modal'>CONFERVA</button>
+                    </div>
+                ";
+
+                $is_checked = "checked";
+            }
+        }
+
         $riep_table = "
             <div class='accordion accordion-flush' id='accordionFlushExample'>
             <div class='accordion-item'>
@@ -180,7 +233,7 @@
                     </label>
                 </div>
                 <div class='form-check'>
-                    <input class='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault2' data-bs-toggle='modal' data-bs-target='#cardmodal'>
+                    <input class='form-check-input' type='radio' name='flexRadioDefault' id='flexRadioDefault2' data-bs-toggle='modal' data-bs-target='#cardmodal' {$is_checked}>
                     <label class='form-check-label' for='flexRadioDefault2'>
                     Pagamento tramite Carta
                     </label>
@@ -189,33 +242,11 @@
                     <div class='modal-dialog'>
                     <div class='modal-content'>
                         <div class='modal-header'>
-                        <h5 class='modal-title' id='exampleModalLabel'>Inserisci Metodo Pagamento</h5>
-                        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                            <h5 class='modal-title' id='exampleModalLabel'>Inserisci Metodo Pagamento</h5>
+                            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                         </div>
                         <div class='modal-body'>
-                            <div class='input-group mb-3'>
-                                <span class='input-group-text'>Numero Carta:</span>
-                                <input type='text' class='form-control'>
-                            </div>
-                            <div class='input-group mb-3'>
-                                <span class='input-group-text'>Data Scadenza Carta:</span>
-                                <input class='form-control' type='date' value='2011-08' name='' required> 
-                            </div>
-                            <div class='input-group mb-3'>
-                                <span class='input-group-text'>CV:</span>
-                                <input type='text' class='form-control'>
-                            </div>
-                            <div class='form-check'>
-                                <input class='form-check-input' type='checkbox' value='' id='flexCheckChecked'>
-                                <label class='form-check-label' for='flexCheckChecked'>
-                                    Ricorda Carta
-                                </label>
-                            </div>
-                        </div>
-                        <div class='modal-footer'>
-                        <button type='button' class='btn btn-outline-danger' data-bs-dismiss='modal'>ANNULLA</button>
-                        <button type='button' class='btn btn-outline-success'>CONFERMA</button>
-                        </div>
+                            {$modal_content}
                     </div>
                     </div>
                 </div>

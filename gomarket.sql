@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Mar 19, 2021 alle 18:13
+-- Creato il: Mar 20, 2021 alle 09:52
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.4.1
 
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `gomarket`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `carta_credito`
+--
+
+CREATE TABLE `carta_credito` (
+  `ID` int(3) NOT NULL,
+  `numero_carta` varchar(255) NOT NULL,
+  `data_scadenza` date NOT NULL,
+  `cv` int(3) NOT NULL,
+  `fk_id_utente` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dump dei dati per la tabella `carta_credito`
+--
+
+INSERT INTO `carta_credito` (`ID`, `numero_carta`, `data_scadenza`, `cv`, `fk_id_utente`) VALUES
+(1, '1234567890121234', '2034-02-12', 123, 1),
+(2, '0923340909328457', '2023-01-01', 934, 2);
 
 -- --------------------------------------------------------
 
@@ -75,7 +97,8 @@ INSERT INTO `ordine` (`ID`, `codice_ordine`, `stato_ordine`, `totale_ordine`, `d
 (33, 'cmfado', 3, 57.9, '2021-03-19', 1),
 (34, 'TI6BVJ', 3, 57.9, '2021-03-19', 1),
 (35, 'sUXUqP', 3, 57.9, '2021-03-19', 1),
-(36, 'PQ5dFA', 3, 70.75, '2021-03-19', 1);
+(36, 'PQ5dFA', 3, 70.75, '2021-03-19', 1),
+(37, 'kDNOLt', 0, 70.75, '2021-03-20', 2);
 
 -- --------------------------------------------------------
 
@@ -221,7 +244,17 @@ INSERT INTO `prodotto_ordine` (`ID`, `fk_id_prodotto`, `quantita_prodotto`, `fk_
 (98, 5, 3, 36),
 (99, 12, 2, 36),
 (100, 13, 1, 36),
-(101, 9, 2, 36);
+(101, 9, 2, 36),
+(102, 1, 3, 37),
+(103, 2, 1, 37),
+(104, 3, 6, 37),
+(105, 6, 2, 37),
+(106, 7, 1, 37),
+(107, 4, 5, 37),
+(108, 5, 3, 37),
+(109, 12, 2, 37),
+(110, 13, 1, 37),
+(111, 9, 2, 37);
 
 -- --------------------------------------------------------
 
@@ -296,6 +329,12 @@ INSERT INTO `utente` (`ID`, `nome`, `cognome`, `indirizzo_email`, `pwd`, `nome_u
 --
 
 --
+-- Indici per le tabelle `carta_credito`
+--
+ALTER TABLE `carta_credito`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indici per le tabelle `indirizzo`
 --
 ALTER TABLE `indirizzo`
@@ -348,6 +387,12 @@ ALTER TABLE `utente`
 --
 
 --
+-- AUTO_INCREMENT per la tabella `carta_credito`
+--
+ALTER TABLE `carta_credito`
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT per la tabella `indirizzo`
 --
 ALTER TABLE `indirizzo`
@@ -357,7 +402,7 @@ ALTER TABLE `indirizzo`
 -- AUTO_INCREMENT per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine_fattorino`
@@ -375,7 +420,7 @@ ALTER TABLE `prodotto`
 -- AUTO_INCREMENT per la tabella `prodotto_ordine`
 --
 ALTER TABLE `prodotto_ordine`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT per la tabella `ricompensa_fattorino`
