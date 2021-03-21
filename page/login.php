@@ -58,7 +58,7 @@
             </form>
         </div>
         </div>
-        <div class='row first-item'>
+        <div class='row'>
             <div class='col-lg-6 align-self-center'>
                 <img src='../assets/19.svg'class='img-fluid mx-auto d-block'>
             </div>
