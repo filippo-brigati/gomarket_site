@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Mar 20, 2021 alle 09:52
+-- Creato il: Mar 21, 2021 alle 14:15
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.4.1
 
@@ -66,7 +66,14 @@ CREATE TABLE `indirizzo` (
 INSERT INTO `indirizzo` (`ID`, `citta`, `CAP`, `via`, `num_civico`, `fk_id_utente`) VALUES
 (1, 'Reggio-Emilia', 42123, 'Via Glauco Garlassi', '17', 1),
 (2, 'Firenze', 52010, 'Via Pisa', '27', 2),
-(3, 'Reggio-Emilia', 42123, 'Via Pascal', '56', 3);
+(3, 'Reggio-Emilia', 42123, 'Via Pascal', '56', 3),
+(4, 'Milano', 20010, 'Via Mesero', '8', 4),
+(5, 'RE', 42123, 'Via Ghiarda', '8', 5),
+(6, 'RE', 42123, 'Via Ghiarda', '8', 5),
+(7, 'RE', 42123, 'Via Pascal', '12', 6),
+(8, 'RE', 42123, 'Via Pascal', '8', 6),
+(9, 'RE', 42123, 'Via Pascal', '8', 6),
+(10, 'RE', 42123, 'Via Pascal', '3', 6);
 
 -- --------------------------------------------------------
 
@@ -98,7 +105,9 @@ INSERT INTO `ordine` (`ID`, `codice_ordine`, `stato_ordine`, `totale_ordine`, `d
 (34, 'TI6BVJ', 3, 57.9, '2021-03-19', 1),
 (35, 'sUXUqP', 3, 57.9, '2021-03-19', 1),
 (36, 'PQ5dFA', 3, 70.75, '2021-03-19', 1),
-(37, 'kDNOLt', 0, 70.75, '2021-03-20', 2);
+(37, 'kDNOLt', 0, 70.75, '2021-03-20', 2),
+(38, 'N2bmNN', 0, 70.75, '2021-03-20', 1),
+(41, 'wydv1u', 0, 70.75, '2021-03-21', 1);
 
 -- --------------------------------------------------------
 
@@ -254,7 +263,27 @@ INSERT INTO `prodotto_ordine` (`ID`, `fk_id_prodotto`, `quantita_prodotto`, `fk_
 (108, 5, 3, 37),
 (109, 12, 2, 37),
 (110, 13, 1, 37),
-(111, 9, 2, 37);
+(111, 9, 2, 37),
+(112, 1, 3, 38),
+(113, 2, 1, 38),
+(114, 3, 6, 38),
+(115, 6, 2, 38),
+(116, 7, 1, 38),
+(117, 4, 5, 38),
+(118, 5, 3, 38),
+(119, 12, 2, 38),
+(120, 13, 1, 38),
+(121, 9, 2, 38),
+(142, 1, 3, 41),
+(143, 2, 1, 41),
+(144, 3, 6, 41),
+(145, 6, 2, 41),
+(146, 7, 1, 41),
+(147, 4, 5, 41),
+(148, 5, 3, 41),
+(149, 12, 2, 41),
+(150, 13, 1, 41),
+(151, 9, 2, 41);
 
 -- --------------------------------------------------------
 
@@ -320,9 +349,12 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`ID`, `nome`, `cognome`, `indirizzo_email`, `pwd`, `nome_utente`, `codice_fiscale`, `data_di_nascita`, `ruolo`) VALUES
-(1, 'Filippo', 'Brigati', 'filippobrigati2@gmail.com', 'fillobrix2002', 'FilloBrix', 'BRGFPP02L14H223P', '2002-07-14', 0),
-(2, 'Mario', 'Rossi', 'mario.rossi@gmail.com', 'mariorossipwd', 'Mario_Rossi', 'MRJDNNVK2023JNDJ', '1990-07-19', 0),
-(3, 'Alessio', 'Blasi', 'alessio.blasi@gmail.com', 'aleblasipwd', 'Ale_Blasi', 'BLSLSS84H28A944J', '1984-06-28', 1);
+(1, 'Filippo', 'Brigati', 'filippobrigati2@gmail.com', 'wTiDpPJC', 'FilloBrix', 'BRGFPP02L14H223P', '2002-07-14', 0),
+(2, 'Mario', 'Rossi', 'mario.rossi@gmail.com', 'mariorossipwd1', 'Mario_Rossi', 'MRJDNNVK2023JNDJ', '1990-07-19', 0),
+(3, 'Alessio', 'Blasi', 'alessio.blasi@gmail.com', 'aleblasipwd', 'Ale_Blasi', 'BLSLSS84H28A944J', '1984-06-28', 1),
+(4, 'Luca', 'Bianchi', 'luca.bianchi@gmail.com', 'lucabianchipwd', 'Luca_Bianchi', 'LDUVKN3JDNV349KDVN', '2000-03-12', 0),
+(5, 'Federico', 'Benassi', 'federico.benassi@studenti.iispascal.it', 'fedebennapwd', 'Federico_Benassi', 'KDNKVéVDK39KNVDD399', '2002-02-22', 0),
+(6, 'Filippo', 'Brigati', 'filippo.brigati@studenti.iispascal.it', 'fillobrix2002', 'Fillo_02', 'BRGF02PP0SKMFVN', '2002-07-14', 0);
 
 --
 -- Indici per le tabelle scaricate
@@ -396,13 +428,13 @@ ALTER TABLE `carta_credito`
 -- AUTO_INCREMENT per la tabella `indirizzo`
 --
 ALTER TABLE `indirizzo`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine_fattorino`
@@ -420,7 +452,7 @@ ALTER TABLE `prodotto`
 -- AUTO_INCREMENT per la tabella `prodotto_ordine`
 --
 ALTER TABLE `prodotto_ordine`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT per la tabella `ricompensa_fattorino`
@@ -438,7 +470,7 @@ ALTER TABLE `supermercato`
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

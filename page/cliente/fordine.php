@@ -52,9 +52,6 @@
         $id_ordine = connessione($check_sql, "gomarket");
         $final_prod_array = $_SESSION["FINAL_PROD_ARRAY"];
 
-        //print_r($id_ordine[0]["ID"]);
-        //print_r($final_prod_array);
-
         foreach($final_prod_array as $r) {
             $prod_sql = "INSERT INTO prodotto_ordine (fk_id_prodotto, quantita_prodotto, fk_id_ordine)
                          VALUES ($r[0], $r[1], {$id_ordine[0]["ID"]})";
