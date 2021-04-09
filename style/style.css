@@ -1,7 +1,6 @@
-body {
-    font-family: 'Inter', sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;300;400;500;600;700;800&display=swap');
 
+body { font-family: 'Lexend', sans-serif; }
 .blueback {
     background-color: rgb(102, 106, 246);
 }

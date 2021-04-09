@@ -5,8 +5,8 @@
     if(isset($_SESSION["NOME"])) {
         if($_SESSION["RUOLO"] == 0) {
             $nav = "
-                <nav class='container navbar sticky-top navbar-expand-lg navbar-light bg-white'>
-                    <div class='container-fluid'>
+                <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
+                    <div class='container'>
                     <a class='navbar-brand' href='./index.php'>GOMARKET</a>
                     <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
                         <span class='navbar-toggler-icon'></span>
@@ -49,14 +49,14 @@
                 <div class='col-lg-1'></div>
                 <div class='col-md-5'>
                     <h3>Visualizza i prodotti disponibili, puoi scegliere tra diversi supermercati per trovare i prezzi migliori e le marche più adatte a te!</h3>
-                    <div class='pt-3'><a href='' type='button' class='btn btn-outline-primary btn-lg'>Visualizza Prodotti</a></div>
+                    <div class='pt-3'><a href='./page/cliente/prodotti.php' type='button' class='btn btn-outline-primary btn-lg'>Visualizza Prodotti</a></div>
                 </div>
             </div>
             ";
         }else {
             $nav = "
-                <nav class='container navbar sticky-top navbar-expand-lg navbar-light bg-white'>
-                    <div class='container-fluid'>
+                <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
+                    <div class='container'>
                     <a class='navbar-brand' href='./index.php'>GOMARKET</a>
                     <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
                         <span class='navbar-toggler-icon'></span>
@@ -119,8 +119,8 @@
 
     }else {
         $nav = "
-            <nav class='container navbar sticky-top navbar-expand-lg navbar-light bg-white'>
-                <div class='container-fluid'>
+            <nav class='navbar sticky-top navbar-expand-lg navbar-light bg-white'>
+                <div class='container'>
                 <a class='navbar-brand' href='./index.php'>GOMARKET</a>
                 <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
                     <span class='navbar-toggler-icon'></span>
@@ -233,8 +233,8 @@
                 <meta charset='utf-8'>
                 <meta name='viewport' content='width=device-width, initial-scale=1'>
                 <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1' crossorigin='anonymous'>
-                <link rel='preconnect' href='https://fonts.gstatic.com'>
-                <link href='https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap' rel='stylesheet'>
+                <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+                <script src='./js/main.js'></script>
                 <link rel='stylesheet' href='./style/style.css'>
                 <title>GoMarket</title>
             </head>
