@@ -88,7 +88,7 @@
                 <div class='row d-flex align-items-center pt-4'>
                     <div class='col-md-5'>
                         <h1>Bentornato {$_SESSION["NOME"]}! Pronto a guadagnare consegnando la tua prossima spesa?!</h1>
-                        <div class='pt-3'><a href='./page/cliente/nordine.php' type='button' class='btn btn-outline-primary btn-lg'>Visualizza Saldo</a></div>
+                        <div class='pt-3'><a href='./page/fattorino/portafoglio.php' type='button' class='btn btn-outline-primary btn-lg'>Visualizza Saldo</a></div>
                     </div>
                     <div class='col-lg-1'></div>
                     <div class='col-md-6'>

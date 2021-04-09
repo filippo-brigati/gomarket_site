@@ -51,7 +51,7 @@
                 <div class='collapse navbar-collapse justify-content-end' id='navbarNav'>
                     <ul class='navbar-nav'>
                     <li class='nav-item'>
-                        <a class='nav-link' href='../portafoglio.php'>SALDO</a>
+                        <a class='nav-link' href='./portafoglio.php'>SALDO</a>
                     </li>
                     <li class='nav-item'>
                         <a class='nav-link' href='./nconsegna.php'>CONSEGNA</a>
@@ -60,7 +60,7 @@
                         <a class='nav-link active' href='./registroconsegne.php'>REGISTRO</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href='./profilo.php'>PROFILO</a>
+                        <a class='nav-link' href='../profilo.php'>PROFILO</a>
                     </li>
                     <li class='nav-item'>
                         <a class='nav-link' href='../../method/logout.php'>LOGOUT</a>
