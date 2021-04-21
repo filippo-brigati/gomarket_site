@@ -25,6 +25,8 @@
         $next_id = $id[0];
         $next_id = $next_id["Max_Id"]+1;
 
+        $arr[3] = password_hash($arr[3], PASSWORD_DEFAULT);
+
         $second_sql = "INSERT INTO utente (ID, nome, cognome, indirizzo_email, pwd, nome_utente, codice_fiscale, data_di_nascita, ruolo) 
                        VALUES ($next_id, '$arr[0]', '$arr[1]', '$arr[2]', '$arr[3]', '$arr[4]', '$arr[5]', '$arr[10]', $arr[11])";
         $third_sql = "INSERT INTO indirizzo (citta, CAP, via, num_civico, fk_id_utente) 

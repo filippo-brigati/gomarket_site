@@ -14,7 +14,7 @@
 		//echo "Connessione stabilita con successo";
 		$resultset = $conn->query($sql);
 		$righe = mysqli_fetch_all($resultset, MYSQLI_ASSOC);
-		return $righe;        
+		return $righe;
 	}
 
 	function proteggi() {
