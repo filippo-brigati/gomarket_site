@@ -171,7 +171,7 @@
             ";
         }else {
             foreach($result_card as $rc) {
-                $str_card = "**** **** **** ".substr($rc["numero_carta"],12);
+                $str_card = "**** **** **** ".$rc["last_nb"];
 
                 $modal_content .= "
                     <div class='form-check'>

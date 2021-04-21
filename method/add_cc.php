@@ -2,13 +2,15 @@
     session_start();
     include('./funzioni.php');
 
-    $numero_carta = $_POST['n_card'];
     $data_scadenza = $_POST['d_scad'];
-    $cv = $_POST['cv'];
+    $last_nb = substr($_POST['n_card'],12);
     
     if(isset($_POST['remember'])) {
-        $sql = "INSERT INTO carta_credito (numero_carta, data_scadenza, cv, fk_id_utente) 
-        VALUES ('$numero_carta', '$data_scadenza', $cv, {$_SESSION["ID_CLIENTE"]})";
+        $numero_carta = password_hash($_POST['n_card'], PASSWORD_DEFAULT);
+        $cv = password_hash($_POST['cv'], PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO carta_credito (numero_carta, data_scadenza, cv, last_nb, fk_id_utente) 
+        VALUES ('$numero_carta', '$data_scadenza', $cv, $last_nb, {$_SESSION["ID_CLIENTE"]})";
         
         inserisci($sql, "gomarket");
     }
