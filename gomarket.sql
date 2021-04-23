@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Mar 21, 2021 alle 14:15
+-- Creato il: Apr 23, 2021 alle 09:28
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.4.1
 
@@ -32,7 +32,8 @@ CREATE TABLE `carta_credito` (
   `ID` int(3) NOT NULL,
   `numero_carta` varchar(255) NOT NULL,
   `data_scadenza` date NOT NULL,
-  `cv` int(3) NOT NULL,
+  `cv` varchar(255) NOT NULL,
+  `last_nb` varchar(255) NOT NULL,
   `fk_id_utente` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -40,9 +41,8 @@ CREATE TABLE `carta_credito` (
 -- Dump dei dati per la tabella `carta_credito`
 --
 
-INSERT INTO `carta_credito` (`ID`, `numero_carta`, `data_scadenza`, `cv`, `fk_id_utente`) VALUES
-(1, '1234567890121234', '2034-02-12', 123, 1),
-(2, '0923340909328457', '2023-01-01', 934, 2);
+INSERT INTO `carta_credito` (`ID`, `numero_carta`, `data_scadenza`, `cv`, `last_nb`, `fk_id_utente`) VALUES
+(3, '$2y$10$od/nQAq0wlkVvJVV20a1f.GjueE/gXZafjM7MeVDjgvCxyTg7MJyS', '2024-12-12', '$2y$10$aLfTVn9VXuKryTRbGqQMo.tJ3d9pvUZ9yXi5TS6Er6x6iyGsRsRli', '123', 1);
 
 -- --------------------------------------------------------
 
@@ -73,7 +73,9 @@ INSERT INTO `indirizzo` (`ID`, `citta`, `CAP`, `via`, `num_civico`, `fk_id_utent
 (7, 'RE', 42123, 'Via Pascal', '12', 6),
 (8, 'RE', 42123, 'Via Pascal', '8', 6),
 (9, 'RE', 42123, 'Via Pascal', '8', 6),
-(10, 'RE', 42123, 'Via Pascal', '3', 6);
+(10, 'RE', 42123, 'Via Pascal', '3', 6),
+(11, 'Reggio Emilia', 42123, 'Via Roma', '2', 7),
+(12, 'Parma', 12345, 'Via Roma', '21', 8);
 
 -- --------------------------------------------------------
 
@@ -107,7 +109,9 @@ INSERT INTO `ordine` (`ID`, `codice_ordine`, `stato_ordine`, `totale_ordine`, `d
 (36, 'PQ5dFA', 3, 70.75, '2021-03-19', 1),
 (37, 'kDNOLt', 0, 70.75, '2021-03-20', 2),
 (38, 'N2bmNN', 0, 70.75, '2021-03-20', 1),
-(41, 'wydv1u', 0, 70.75, '2021-03-21', 1);
+(43, 'fmdcdf', 0, 70.75, '2021-04-09', 6),
+(44, 'zYcqVX', 0, 70.75, '2021-04-09', 6),
+(45, 'B0G05T', 0, 70.75, '2021-04-21', 1);
 
 -- --------------------------------------------------------
 
@@ -274,16 +278,36 @@ INSERT INTO `prodotto_ordine` (`ID`, `fk_id_prodotto`, `quantita_prodotto`, `fk_
 (119, 12, 2, 38),
 (120, 13, 1, 38),
 (121, 9, 2, 38),
-(142, 1, 3, 41),
-(143, 2, 1, 41),
-(144, 3, 6, 41),
-(145, 6, 2, 41),
-(146, 7, 1, 41),
-(147, 4, 5, 41),
-(148, 5, 3, 41),
-(149, 12, 2, 41),
-(150, 13, 1, 41),
-(151, 9, 2, 41);
+(162, 1, 3, 43),
+(163, 2, 1, 43),
+(164, 3, 6, 43),
+(165, 6, 2, 43),
+(166, 7, 1, 43),
+(167, 4, 5, 43),
+(168, 5, 3, 43),
+(169, 12, 2, 43),
+(170, 13, 1, 43),
+(171, 9, 2, 43),
+(172, 1, 3, 44),
+(173, 2, 1, 44),
+(174, 3, 6, 44),
+(175, 6, 2, 44),
+(176, 7, 1, 44),
+(177, 4, 5, 44),
+(178, 5, 3, 44),
+(179, 12, 2, 44),
+(180, 13, 1, 44),
+(181, 9, 2, 44),
+(182, 1, 3, 45),
+(183, 2, 1, 45),
+(184, 3, 6, 45),
+(185, 6, 2, 45),
+(186, 7, 1, 45),
+(187, 4, 5, 45),
+(188, 5, 3, 45),
+(189, 12, 2, 45),
+(190, 13, 1, 45),
+(191, 9, 2, 45);
 
 -- --------------------------------------------------------
 
@@ -349,12 +373,14 @@ CREATE TABLE `utente` (
 --
 
 INSERT INTO `utente` (`ID`, `nome`, `cognome`, `indirizzo_email`, `pwd`, `nome_utente`, `codice_fiscale`, `data_di_nascita`, `ruolo`) VALUES
-(1, 'Filippo', 'Brigati', 'filippobrigati2@gmail.com', 'wTiDpPJC', 'FilloBrix', 'BRGFPP02L14H223P', '2002-07-14', 0),
+(1, 'Filippo', 'Brigati', 'filippobrigati2@gmail.com', '$2y$10$XCyJTuTnZA6zZ8rqmhTJBONpQSRn4/NYi51xDYK2NXHhxGpNxsD/2', 'FilloBrix', 'BRGFPP02L14H223P', '2002-07-14', 0),
 (2, 'Mario', 'Rossi', 'mario.rossi@gmail.com', 'mariorossipwd1', 'Mario_Rossi', 'MRJDNNVK2023JNDJ', '1990-07-19', 0),
 (3, 'Alessio', 'Blasi', 'alessio.blasi@gmail.com', 'aleblasipwd', 'Ale_Blasi', 'BLSLSS84H28A944J', '1984-06-28', 1),
 (4, 'Luca', 'Bianchi', 'luca.bianchi@gmail.com', 'lucabianchipwd', 'Luca_Bianchi', 'LDUVKN3JDNV349KDVN', '2000-03-12', 0),
 (5, 'Federico', 'Benassi', 'federico.benassi@studenti.iispascal.it', 'fedebennapwd', 'Federico_Benassi', 'KDNKVéVDK39KNVDD399', '2002-02-22', 0),
-(6, 'Filippo', 'Brigati', 'filippo.brigati@studenti.iispascal.it', 'fillobrix2002', 'Fillo_02', 'BRGF02PP0SKMFVN', '2002-07-14', 0);
+(6, 'Filippo', 'Brigati', 'filippo.brigati@studenti.iispascal.it', 'r6VHw2mU', 'Fillo_02', 'BRGF02PP0SKMFVN', '2002-07-14', 0),
+(7, 'Giovanni', 'Rana', 'giovanni.rana@gmail.com', '$2y$10$d0cESdhKzutv5sC53r5GbeXfZ8jaR0zdKyHI7Y0iUd0rYFzfl2sDu', 'Giova_Rana', 'JVNDJNN)£8439JNDJN', '1992-08-19', 0),
+(8, 'Rita', 'Bianchi', 'rita.bianchi@gmail.com', '$2y$10$IhrMkaRPAIGTNQzBodO1rOyUE87iCiceR3zKwlOyIyF9VfTKgSuPO', 'RITA_BIANCHI', 'DIRNN349DJVN30', '1990-08-19', 0);
 
 --
 -- Indici per le tabelle scaricate
@@ -422,19 +448,19 @@ ALTER TABLE `utente`
 -- AUTO_INCREMENT per la tabella `carta_credito`
 --
 ALTER TABLE `carta_credito`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT per la tabella `indirizzo`
 --
 ALTER TABLE `indirizzo`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine_fattorino`
@@ -452,7 +478,7 @@ ALTER TABLE `prodotto`
 -- AUTO_INCREMENT per la tabella `prodotto_ordine`
 --
 ALTER TABLE `prodotto_ordine`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
 
 --
 -- AUTO_INCREMENT per la tabella `ricompensa_fattorino`
@@ -470,7 +496,7 @@ ALTER TABLE `supermercato`
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
