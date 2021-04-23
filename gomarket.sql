@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Apr 23, 2021 alle 09:28
+-- Creato il: Apr 23, 2021 alle 11:15
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.4.1
 
@@ -75,7 +75,8 @@ INSERT INTO `indirizzo` (`ID`, `citta`, `CAP`, `via`, `num_civico`, `fk_id_utent
 (9, 'RE', 42123, 'Via Pascal', '8', 6),
 (10, 'RE', 42123, 'Via Pascal', '3', 6),
 (11, 'Reggio Emilia', 42123, 'Via Roma', '2', 7),
-(12, 'Parma', 12345, 'Via Roma', '21', 8);
+(12, 'Parma', 12345, 'Via Roma', '21', 8),
+(13, 'Reggio-Emilia', 42123, 'Via Pascal', '54', 9);
 
 -- --------------------------------------------------------
 
@@ -108,7 +109,7 @@ INSERT INTO `ordine` (`ID`, `codice_ordine`, `stato_ordine`, `totale_ordine`, `d
 (35, 'sUXUqP', 3, 57.9, '2021-03-19', 1),
 (36, 'PQ5dFA', 3, 70.75, '2021-03-19', 1),
 (37, 'kDNOLt', 0, 70.75, '2021-03-20', 2),
-(38, 'N2bmNN', 0, 70.75, '2021-03-20', 1),
+(38, 'N2bmNN', 3, 70.75, '2021-03-20', 1),
 (43, 'fmdcdf', 0, 70.75, '2021-04-09', 6),
 (44, 'zYcqVX', 0, 70.75, '2021-04-09', 6),
 (45, 'B0G05T', 0, 70.75, '2021-04-21', 1);
@@ -138,7 +139,8 @@ INSERT INTO `ordine_fattorino` (`ID`, `fk_id_ordine`, `fk_id_cliente`, `fk_id_fa
 (8, 33, 1, 3),
 (9, 34, 1, 3),
 (10, 35, 1, 3),
-(11, 36, 1, 3);
+(11, 36, 1, 3),
+(12, 38, 1, 9);
 
 -- --------------------------------------------------------
 
@@ -328,7 +330,8 @@ CREATE TABLE `ricompensa_fattorino` (
 
 INSERT INTO `ricompensa_fattorino` (`ID`, `importo_ricompensa`, `data_ricompensa`, `fk_id_fattorino`) VALUES
 (2, 11.58, '2021-03-19', 3),
-(3, 14.15, '2021-03-19', 3);
+(3, 14.15, '2021-03-19', 3),
+(4, 14.15, '2021-04-23', 9);
 
 -- --------------------------------------------------------
 
@@ -374,13 +377,9 @@ CREATE TABLE `utente` (
 
 INSERT INTO `utente` (`ID`, `nome`, `cognome`, `indirizzo_email`, `pwd`, `nome_utente`, `codice_fiscale`, `data_di_nascita`, `ruolo`) VALUES
 (1, 'Filippo', 'Brigati', 'filippobrigati2@gmail.com', '$2y$10$XCyJTuTnZA6zZ8rqmhTJBONpQSRn4/NYi51xDYK2NXHhxGpNxsD/2', 'FilloBrix', 'BRGFPP02L14H223P', '2002-07-14', 0),
-(2, 'Mario', 'Rossi', 'mario.rossi@gmail.com', 'mariorossipwd1', 'Mario_Rossi', 'MRJDNNVK2023JNDJ', '1990-07-19', 0),
-(3, 'Alessio', 'Blasi', 'alessio.blasi@gmail.com', 'aleblasipwd', 'Ale_Blasi', 'BLSLSS84H28A944J', '1984-06-28', 1),
-(4, 'Luca', 'Bianchi', 'luca.bianchi@gmail.com', 'lucabianchipwd', 'Luca_Bianchi', 'LDUVKN3JDNV349KDVN', '2000-03-12', 0),
-(5, 'Federico', 'Benassi', 'federico.benassi@studenti.iispascal.it', 'fedebennapwd', 'Federico_Benassi', 'KDNKVéVDK39KNVDD399', '2002-02-22', 0),
-(6, 'Filippo', 'Brigati', 'filippo.brigati@studenti.iispascal.it', 'r6VHw2mU', 'Fillo_02', 'BRGF02PP0SKMFVN', '2002-07-14', 0),
 (7, 'Giovanni', 'Rana', 'giovanni.rana@gmail.com', '$2y$10$d0cESdhKzutv5sC53r5GbeXfZ8jaR0zdKyHI7Y0iUd0rYFzfl2sDu', 'Giova_Rana', 'JVNDJNN)£8439JNDJN', '1992-08-19', 0),
-(8, 'Rita', 'Bianchi', 'rita.bianchi@gmail.com', '$2y$10$IhrMkaRPAIGTNQzBodO1rOyUE87iCiceR3zKwlOyIyF9VfTKgSuPO', 'RITA_BIANCHI', 'DIRNN349DJVN30', '1990-08-19', 0);
+(8, 'Rita', 'Bianchi', 'rita.bianchi@gmail.com', '$2y$10$IhrMkaRPAIGTNQzBodO1rOyUE87iCiceR3zKwlOyIyF9VfTKgSuPO', 'RITA_BIANCHI', 'DIRNN349DJVN30', '1990-08-19', 0),
+(9, 'Alessio', 'Blasi', 'alessio.blasi@gmail.com', '$2y$10$clzCJSH/MUbATY/Tkq4ayOjN/Cnq2DpkqzvBpuKkHLogFgeTfmZda', 'Alessio_Blasi', 'VDOKSN349fnNvn', '2000-08-19', 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -454,7 +453,7 @@ ALTER TABLE `carta_credito`
 -- AUTO_INCREMENT per la tabella `indirizzo`
 --
 ALTER TABLE `indirizzo`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -466,7 +465,7 @@ ALTER TABLE `ordine`
 -- AUTO_INCREMENT per la tabella `ordine_fattorino`
 --
 ALTER TABLE `ordine_fattorino`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT per la tabella `prodotto`
@@ -484,7 +483,7 @@ ALTER TABLE `prodotto_ordine`
 -- AUTO_INCREMENT per la tabella `ricompensa_fattorino`
 --
 ALTER TABLE `ricompensa_fattorino`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT per la tabella `supermercato`
@@ -496,7 +495,7 @@ ALTER TABLE `supermercato`
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
