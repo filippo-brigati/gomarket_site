@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Creato il: Apr 23, 2021 alle 11:15
+-- Creato il: Giu 07, 2021 alle 15:25
 -- Versione del server: 10.4.11-MariaDB
 -- Versione PHP: 7.4.1
 
@@ -76,7 +76,8 @@ INSERT INTO `indirizzo` (`ID`, `citta`, `CAP`, `via`, `num_civico`, `fk_id_utent
 (10, 'RE', 42123, 'Via Pascal', '3', 6),
 (11, 'Reggio Emilia', 42123, 'Via Roma', '2', 7),
 (12, 'Parma', 12345, 'Via Roma', '21', 8),
-(13, 'Reggio-Emilia', 42123, 'Via Pascal', '54', 9);
+(13, 'Reggio-Emilia', 42123, 'Via Pascal', '54', 9),
+(14, 'RE', 42123, 'Via roma', '20', 10);
 
 -- --------------------------------------------------------
 
@@ -379,7 +380,8 @@ INSERT INTO `utente` (`ID`, `nome`, `cognome`, `indirizzo_email`, `pwd`, `nome_u
 (1, 'Filippo', 'Brigati', 'filippobrigati2@gmail.com', '$2y$10$XCyJTuTnZA6zZ8rqmhTJBONpQSRn4/NYi51xDYK2NXHhxGpNxsD/2', 'FilloBrix', 'BRGFPP02L14H223P', '2002-07-14', 0),
 (7, 'Giovanni', 'Rana', 'giovanni.rana@gmail.com', '$2y$10$d0cESdhKzutv5sC53r5GbeXfZ8jaR0zdKyHI7Y0iUd0rYFzfl2sDu', 'Giova_Rana', 'JVNDJNN)£8439JNDJN', '1992-08-19', 0),
 (8, 'Rita', 'Bianchi', 'rita.bianchi@gmail.com', '$2y$10$IhrMkaRPAIGTNQzBodO1rOyUE87iCiceR3zKwlOyIyF9VfTKgSuPO', 'RITA_BIANCHI', 'DIRNN349DJVN30', '1990-08-19', 0),
-(9, 'Alessio', 'Blasi', 'alessio.blasi@gmail.com', '$2y$10$clzCJSH/MUbATY/Tkq4ayOjN/Cnq2DpkqzvBpuKkHLogFgeTfmZda', 'Alessio_Blasi', 'VDOKSN349fnNvn', '2000-08-19', 1);
+(9, 'Alessio', 'Blasi', 'alessio.blasi@gmail.com', '$2y$10$clzCJSH/MUbATY/Tkq4ayOjN/Cnq2DpkqzvBpuKkHLogFgeTfmZda', 'Alessio_Blasi', 'VDOKSN349fnNvn', '2000-08-19', 1),
+(10, 'Claudio', 'Scognamiglio', 'claudio.scognamiglio@studenti.iispascal.it', '$2y$10$FS7oaVD4QHpuBg.TYkqQbeayoThQmAqx9fDSf4rcFw3/SwWwamcE.', 'Claudio', 'ksndvnsfvkvnkvndkn', '2000-08-19', 0);
 
 --
 -- Indici per le tabelle scaricate
@@ -453,7 +455,7 @@ ALTER TABLE `carta_credito`
 -- AUTO_INCREMENT per la tabella `indirizzo`
 --
 ALTER TABLE `indirizzo`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT per la tabella `ordine`
@@ -495,7 +497,7 @@ ALTER TABLE `supermercato`
 -- AUTO_INCREMENT per la tabella `utente`
 --
 ALTER TABLE `utente`
-  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

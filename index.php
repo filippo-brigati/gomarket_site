@@ -141,7 +141,7 @@
         $body = "
             <div class='row d-flex align-items-center pt-4'>
                 <div class='col-md-5'>
-                    <h1>Benvenuto su Gomarket! Pronto ad Ordinare la tua prossima spesa?!</h1>
+                    <p class='display-6'><strong>Benvenuto su Gomarket! Pronto ad Ordinare la tua prossima spesa?!</strong></p>
                     <div class='pt-3'><a href='./page/login.php' type='button' class='btn btn-outline-primary btn-lg'>Ordina Ora</a></div>
                 </div>
                 <div class='col-lg-1'></div>
@@ -179,52 +179,49 @@
     }
 
     $footer = "
-    <footer class='text-center text-lg-start' style='background-color: rgb(102, 106, 246)'>
-      <div class='container p-4'>
-        <div class='container row text-light'>
-          <div class='col-lg-6 col-md-12 mb-4 mb-md-0'>
-            <h5 class='text-uppercase'>Footer Content</h5>
-            <p>
-                Ciao!
-            </p>
-          </div>
-          <div class='col-lg-3 col-md-6 mb-4 mb-md-0'>
-            <h5 class='text-uppercase'>Links</h5>
-            <ul class='list-unstyled mb-0'>
-              <li>
-                <a href='#!' class='text-dark'>Link 1</a>
-              </li>
-              <li>
-                <a href='#!' class='text-dark'>Link 2</a>
-              </li>
-              <li>
-                <a href='#!' class='text-dark'>Link 3</a>
-              </li>
-              <li>
-                <a href='#!' class='text-dark'>Link 4</a>
-              </li>
-            </ul>
-          </div>
-          <div class='col-lg-3 col-md-6 mb-4 mb-md-0'>
-            <h5 class='text-uppercase mb-0'>Links</h5>
-            <ul class='list-unstyled'>
-              <li>
-                <a href='#!' class='text-dark'>Link 1</a>
-              </li>
-              <li>
-                <a href='#!' class='text-dark'>Link 2</a>
-              </li>
-              <li>
-                <a href='#!' class='text-dark'>Link 3</a>
-              </li>
-              <li>
-                <a href='#!' class='text-dark'>Link 4</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <div class='container-fluid pb-0 mb-0 justify-content-center text-light '>
+        <footer>
+            <div class='row my-5 justify-content-center py-5'>
+                <div class='col-11'>
+                    <div class='row '>
+                        <div class='col-xl-8 col-md-4 col-sm-4 col-12 my-auto mx-auto a'>
+                            <h3 class='text-muted mb-md-0 mb-5 bold-text'>GoMarket.</h3>
+                        </div>
+                        <div class='col-xl-2 col-md-4 col-sm-4 col-12'>
+                            <h6 class='mb-3 mb-lg-4 bold-text text-muted'><b>MENU</b></h6>
+                            <ul class='list-unstyled'>
+                                <li class='text-dark'>Home</li>
+                                <li class='text-dark'>About</li>
+                                <li class='text-dark'>Blog</li>
+                                <li class='text-dark'>Portfolio</li>
+                            </ul>
+                        </div>
+                        <div class='col-xl-2 col-md-4 col-sm-4 col-12'>
+                            <h6 class='mb-3 mb-lg-4 text-muted bold-text mt-sm-0 mt-5'><b>ADDRESS</b></h6>
+                            <p class='mb-1 text-dark'>13, VIA MAKALLE</p>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-xl-8 col-md-4 col-sm-4 col-auto my-md-0 mt-5 order-sm-1 order-3 align-self-end'>
+                            <p class='social text-muted mb-0 pb-0 bold-text'> <span class='mx-2'><i class='fa fa-facebook' aria-hidden='true'></i></span> <span class='mx-2'><i class='fa fa-linkedin-square' aria-hidden='true'></i></span> <span class='mx-2'><i class='fa fa-twitter' aria-hidden='true'></i></span> <span class='mx-2'><i class='fa fa-instagram' aria-hidden='true'></i></span> </p><small class='rights'><span>&#174;</span> Pepper All Rights Reserved.</small>
+                        </div>
+                        <div class='col-xl-2 col-md-4 col-sm-4 col-auto order-1 align-self-end '>
+                            <h6 class='mt-55 mt-2 text-muted bold-text'><b>FILIPPO BRIGATI</b></h6>
+                            <small>
+                                <span class='text-dark'>filippobrigati2@gmail.com</span>
+                            </small>
+                        </div>
+                        <div class='col-xl-2 col-md-4 col-sm-4 col-auto order-2 align-self-end mt-3 '>
+                            <h6 class='text-muted bold-text'><b>ALEX VIANI</b></h6>
+                            <small>
+                                <span class='text-dark'>alex.viani@gmail.com</span>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
     ";
 
     $html = "
@@ -240,8 +237,12 @@
             </head>
             <body>
                 {$nav}
-                <div class='container'><div class='container'>{$body}</div></div>
-                {$footer}
+                <div class='container'>
+                    <div class='container'>
+                        {$body}
+                        {$footer}
+                    </div>
+                </div>
                 <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js' integrity='sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0' crossorigin='anonymous'></script>
             </body>
         </html>    
